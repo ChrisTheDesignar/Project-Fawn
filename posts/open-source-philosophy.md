@@ -1,0 +1,1 @@
+// placeholder content for open-source-philosophy.md
