@@ -1,16 +1,20 @@
 {
   "name": "project-fawn",
+  "private": true,
   "type": "module",
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "postinstall": "astro sync"
   },
   "dependencies": {
+    "astro": "^5.12.8"
+  },
+  "devDependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/mdx": "^4.3.3",
-    "astro": "^5.12.8",
     "typescript": "^5.9.2"
   }
 }
