@@ -8,6 +8,9 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "astro": "^5.10.2"
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/mdx": "^4.3.3",
+    "astro": "^5.12.8",
+    "typescript": "^5.9.2"
   }
 }

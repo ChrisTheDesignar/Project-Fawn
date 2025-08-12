@@ -1,1 +1,0 @@
-// placeholder content for boot-mechanics.md

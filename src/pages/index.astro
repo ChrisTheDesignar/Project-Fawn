@@ -1,152 +1,82 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts');
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project Fawn</title>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
-    <style>
-      body {
-        background: #000;
-        font-family: 'IBM Plex Mono', monospace;
-        margin: 0;
-        padding: 0;
-        color: #eee;
-      }
-      .section-wrapper {
-        max-width: 980px;
-        margin: 0 auto;
-        padding: 2rem 1rem;
-        border-bottom: 1px solid #fff;
-      }
-      header {
-        text-align: center;
-      }
-      header img {
-        max-width: 200px;
-        margin-bottom: 1rem;
-      }
-      header h1 {
-        font-size: 1.5rem;
-        margin: 0;
-        color: #a8ffb0;
-      }
-      header p {
-        font-size: 1rem;
-        color: #ccc;
-        margin-top: 0.25rem;
-      }
-      .signup form {
-        max-width: 400px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-      }
-      .signup input[type="email"] {
-        width: 100%;
-        padding: 0.5rem;
-        margin-bottom: 1rem;
-        border: none;
-        border-bottom: 1px solid #eee;
-        background: transparent;
-        color: #eee;
-      }
-      .signup button {
-        padding: 0.5rem 1rem;
-        border: 1px solid #eee;
-        background: transparent;
-        color: #eee;
-        cursor: pointer;
-        transition: background 0.3s ease;
-      }
-      .signup button:hover {
-        background: #a8ffb020;
-      }
-      .posts {
-        max-width: 980px;
-        margin: 0 auto;
-        padding-top: 2rem;
-      }
-      .post-preview {
-        margin-bottom: 2rem;
-        border-top: 1px solid #fff;
-        padding-top: 1rem;
-      }
-      .post-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-      }
-      .post-preview h2 {
-        margin: 0;
-        font-size: 1.25rem;
-        color: #a8ffb0;
-      }
-      .post-date {
-        font-size: 0.8rem;
-        color: #fff;
-        white-space: nowrap;
-      }
-      .post-preview p {
-        margin: 0.5rem 0 0;
-        color: #ccc;
-      }
-      .post-preview img {
-        width: 100%;
-        max-width: 980px;
-        display: block;
-        margin-bottom: 1rem;
-      }
-      footer {
-        max-width: 980px;
-        margin: 0 auto;
-        text-align: center;
-        font-size: 0.8rem;
-        color: #888;
-        padding: 2rem 1rem;
-      }
-    </style>
-  </head>
-  <body>
-    <section class="section-wrapper">
-      <header>
-        <img src="/images/Project Fawn Logo.png" alt="Project Fawn Logo">
-        <h1>PROJECT FAWN</h1>
-        <p>fully custom open-sourced 3D printed ski boots</p>
-      </header>
-    </section>
+<BaseLayout title="Home">
+  <style>
+    h1 {
+      margin: 0 0 6px 0;
+      color: var(--accent); /* green heading */
+      font-size: 1.1rem;
+    }
+    p.subhead {
+      margin: 0 0 14px 0;
+      color: #ccc;
+      font-size: .9rem;
+    }
 
-    <section class="section-wrapper signup">
-      <form action="https://formspree.io/f/mpwrbglv" method="post">
-        <label for="email">Stay in the loop:</label>
-        <input type="email" name="email" id="email" placeholder="you@example.com" required>
-        <button type="submit">Sign Up</button>
-      </form>
-    </section>
+    section.posts { margin-top: 16px; }
+    .post-preview {
+      display: flex;
+      gap: 14px;
+      padding: 12px 0;
+      border-top: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .post-thumb {
+      width: 20%;
+      min-width: 140px;
+      max-width: 220px;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+    }
+    .post-meta { flex: 1; }
+    .post-title {
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.2;
+    }
+    .post-date {
+      font-size: .75rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .post-desc {
+      margin: 8px 0 0;
+      color: #ccc;
+      font-size: .9rem;
+    }
+  </style>
 
-    <section class="section-wrapper posts">
-      <div class="post-preview">
-        <img src="/images/boot-mechanics-thumb.jpg" alt="Boot Mechanics Thumbnail">
-        <div class="post-header">
-          <h2><a href="/posts/boot-mechanics.html" style="color:inherit; text-decoration: none;">Boot Mechanics Exploration</a></h2>
-          <span class="post-date">June 2025</span>
+  <section>
+    <h1>Welcome to Project Fawn</h1>
+    <p class="subhead">fully custom open-sourced 3D printed ski boots</p>
+  </section>
+
+  <section class="posts">
+    <h2 style="font-size:.95rem; margin: 0 0 10px 0;">Recent Posts</h2>
+
+    {posts.map((post) => (
+      <article class="post-preview">
+        {post.data.image && (
+          <img class="post-thumb" src={post.data.image} alt={`${post.data.title} thumbnail`} />
+        )}
+        <div class="post-meta">
+          <h3 class="post-title">
+            <a href={`/post/${post.slug}`} style="color:inherit; text-decoration:none;">
+              {post.data.title}
+            </a>
+          </h3>
+          <div class="post-date">{post.data.date}</div>
+          {post.data.description && <p class="post-desc">{post.data.description}</p>}
         </div>
-        <p>Initial notes on boot flex geometry and release triggers...</p>
-      </div>
-      <div class="post-preview">
-        <img src="/images/open-source-thumb.jpg" alt="Open Source Philosophy Thumbnail">
-        <div class="post-header">
-          <h2><a href="/posts/open-source-philosophy.html" style="color:inherit; text-decoration: none;">Why Open Source?</a></h2>
-          <span class="post-date">June 2025</span>
-        </div>
-        <p>The philosophical foundation behind the Fawn framework...</p>
-      </div>
-    </section>
+      </article>
+    ))}
+  </section>
+</BaseLayout>
 
-    <footer>
-      &copy; 2025 Project Fawn. All rights reserved.
-    </footer>
-  </body>
-</html>
+
