@@ -10,29 +10,31 @@
         "description": {
           "type": "string"
         },
-        "date": {
-          "type": "string"
-        },
-        "author": {
-          "type": "string"
-        },
-        "slug": {
-          "type": "string"
-        },
-        "category": {
-          "type": "string"
-        },
-        "tags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "image": {
-          "type": "string"
+        "pubDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
         },
         "draft": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
+        },
+        "cover": {
+          "type": "string"
+        },
+        "coverAlt": {
+          "type": "string"
         },
         "$schema": {
           "type": "string"
@@ -40,10 +42,7 @@
       },
       "required": [
         "title",
-        "description",
-        "date",
-        "author",
-        "slug"
+        "pubDate"
       ],
       "additionalProperties": false
     }

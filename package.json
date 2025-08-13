@@ -3,15 +3,17 @@
   "private": true,
   "type": "module",
   "version": "1.0.0",
-  "engines": { "node": ">=20 <21" },
+  "engines": {
+    "node": ">=22 <23"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro sync && astro build",
     "preview": "astro preview"
   },
   "dependencies": {
-    "astro": "^5.12.8",
-    "@astrojs/mdx": "^4.3.3"
+    "@astrojs/mdx": "^4.3.3",
+    "astro": "^5.12.8"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",

@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, getEntryBySlug } from 'astro:content';
+
+export async function getStaticPaths() {
+  const all = await getCollection('posts');
+  // Works whether post.slug is "testing" or "testing/testing"
+  return all.map((post) => ({ params: { slug: post.slug } }));
+}
+
+const raw = Astro.params.slug;
+// [...slug] can come through as "a/b" or ["a","b"] depending on context
+const slug = Array.isArray(raw) ? raw.join('/') : raw;
+
+const post = await getEntryBySlug('posts', slug);
+if (!post) throw new Error(`Post not found: ${slug}`);
+
+const { Content } = await post.render();
+---
+
+<BaseLayout title={post.data.title}>
+  <article style="max-width:980px;margin:0 auto;padding:0 1rem;">
+    {post.data.cover && (
+      <img
+        src={post.data.cover.src}
+        alt={post.data.coverAlt ?? post.data.title}
+        style="display:block; max-width:980px; width:100%; margin: 0 auto 1rem; aspect-ratio: 16/9; object-fit: cover;"
+        loading="eager"
+      />
+    )}
+
+    <h1>{post.data.title}</h1>
+    <time style="color:#888; font-size:.875rem;">
+      {post.data.pubDate.toLocaleDateString()}
+    </time>
+
+    <div style="margin-top:1rem; line-height:1.6; color:#ccc;">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
