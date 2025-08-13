@@ -4,7 +4,15 @@ import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('posts'))
   .filter((p) => !p.data.draft)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString(undefined, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
 ---
 
 <BaseLayout title="Home">
@@ -58,9 +66,9 @@ const posts = (await getCollection('posts'))
         )}
         <div class="post-meta">
           <h3 class="post-title">{post.data.title}</h3>
-          <time class="post-date" datetime={post.data.pubDate.toISOString()}>
-            {post.data.pubDate.toLocaleDateString()}
-          </time>
+          <time datetime={post.data.pubDate.toISOString()} class="post-date">
+  {formatDate(post.data.pubDate)}
+</time>
           {post.data.description && <p class="post-desc">{post.data.description}</p>}
         </div>
       </a>

@@ -12,29 +12,47 @@ const { title = "Project Fawn" } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title} · Project Fawn</title>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet" />
-    <style>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style is:global>
       :root {
         --bg: #000;
         --fg: #eee;
         --muted: #888;
         --border: #222;
-        --accent: #a8ffb0;
+        --accent: #A8FFB0;
       }
-      * { box-sizing: border-box; }
-      html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); font-family: 'IBM Plex Mono', monospace; }
-      a { color: var(--accent); }
+
+      *, *::before, *::after { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: 'IBM Plex Mono', monospace;
+      }
+
+      a { color: var(--accent); text-decoration: none; }
+
       header {
         display: grid;
         place-items: center;
         padding: 18px 0;
         border-bottom: 1px solid var(--border);
       }
-      header a.logo {
-        display: inline-block;
-      }
+
+      header .logo { display: inline-block; }
+
+      /* Big deer logo, ~40% of viewport width, capped for huge screens */
       header img {
-        /* Big deer logo, ~40% of viewport width, capped for huge screens */
         width: min(40vw, 520px);
         height: auto;
         display: block;
@@ -42,6 +60,16 @@ const { title = "Project Fawn" } = Astro.props;
 
       main { max-width: 980px; margin: 0 auto; padding: 24px 16px; }
       hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+      /* Constrain inline images inside posts */
+      article img {
+        display: block;
+        max-width: 100%;  /* never overflow the 980px article */
+        width: 100%;
+        height: auto;     /* keep aspect ratio */
+        margin: 1rem auto;/* center + breathing room */
+        cursor: zoom-in;  /* hint it's clickable */
+      }
 
       footer {
         max-width: 980px;
@@ -51,6 +79,7 @@ const { title = "Project Fawn" } = Astro.props;
         color: var(--muted);
         text-align: center;
       }
+
       .signup {
         max-width: 640px;
         margin: 0 auto 16px;
@@ -58,26 +87,32 @@ const { title = "Project Fawn" } = Astro.props;
         gap: 8px;
         align-items: center;
       }
+
       .signup input[type="email"] {
         flex: 1;
-        padding: 10px 12px;
+        padding: 12px 12px;
         border: 1px solid var(--border);
         background: transparent;
         color: var(--fg);
         outline: none;
       }
+
       .signup button {
-        padding: 10px 14px;
+        padding: 12px 14px;
         border: 1px solid var(--fg);
         background: transparent;
         color: var(--fg);
         cursor: pointer;
       }
-      .signup button:hover { background: color-mix(in srgb, var(--fg) 10%, transparent); }
+
+      .signup button:hover {
+        background: color-mix(in srgb, var(--fg) 10%, transparent);
+      }
 
       .copyright { margin-top: 12px; font-size: .85rem; }
     </style>
   </head>
+
   <body>
     <header>
       <a class="logo" href="/" aria-label="Back to home">
@@ -91,7 +126,7 @@ const { title = "Project Fawn" } = Astro.props;
 
     <footer>
       <!-- Site-wide Formspree signup -->
-      <form class="signup" action="https://formspree.io/f/mpwrbglv" method="POST">
+      <form class="signup" action="https://formspree.io/f/mwprbglv" method="POST">
         <input type="email" name="email" placeholder="you@example.com" required />
         <button type="submit">Sign Up</button>
       </form>

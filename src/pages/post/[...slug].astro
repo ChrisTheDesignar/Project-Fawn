@@ -1,22 +1,28 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, getEntryBySlug } from 'astro:content';
+import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
   const all = await getCollection('posts');
-  // Works whether post.slug is "testing" or "testing/testing"
   return all.map((post) => ({ params: { slug: post.slug } }));
 }
 
-const raw = Astro.params.slug;
-// [...slug] can come through as "a/b" or ["a","b"] depending on context
-const slug = Array.isArray(raw) ? raw.join('/') : raw;
-
+const { slug } = Astro.params;
 const post = await getEntryBySlug('posts', slug);
 if (!post) throw new Error(`Post not found: ${slug}`);
 
 const { Content } = await post.render();
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString(undefined, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
 ---
+
 
 <BaseLayout title={post.data.title}>
   <article style="max-width:980px;margin:0 auto;padding:0 1rem;">
@@ -30,9 +36,9 @@ const { Content } = await post.render();
     )}
 
     <h1>{post.data.title}</h1>
-    <time style="color:#888; font-size:.875rem;">
-      {post.data.pubDate.toLocaleDateString()}
-    </time>
+    <time datetime={post.data.pubDate.toISOString()} class="post-date">
+  {formatDate(post.data.pubDate)}
+</time>
 
     <div style="margin-top:1rem; line-height:1.6; color:#ccc;">
       <Content />
