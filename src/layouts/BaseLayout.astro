@@ -2,7 +2,6 @@
 export interface Props {
   title?: string;
 }
-
 const { title = "Project Fawn" } = Astro.props;
 ---
 
@@ -27,7 +26,7 @@ const { title = "Project Fawn" } = Astro.props;
         --fg: #eee;
         --muted: #888;
         --border: #222;
-        --accent: #A8FFB0;
+        --accent: #A8FFB0; /* site green */
       }
 
       *, *::before, *::after { box-sizing: border-box; }
@@ -51,7 +50,6 @@ const { title = "Project Fawn" } = Astro.props;
 
       header .logo { display: inline-block; }
 
-      /* Big deer logo, ~40% of viewport width, capped for huge screens */
       header img {
         width: min(40vw, 520px);
         height: auto;
@@ -59,17 +57,77 @@ const { title = "Project Fawn" } = Astro.props;
       }
 
       main { max-width: 980px; margin: 0 auto; padding: 24px 16px; }
-      hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
 
-      /* Constrain inline images inside posts */
+      /* Thin horizontal rules site-wide */
+      hr, .rule { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+      /* Images inside posts */
       article img {
         display: block;
-        max-width: 100%;  /* never overflow the 980px article */
+        max-width: 100%;
         width: 100%;
-        height: auto;     /* keep aspect ratio */
-        margin: 1rem auto;/* center + breathing room */
-        cursor: zoom-in;  /* hint it's clickable */
+        height: auto;
+        margin: 1rem auto;
+        cursor: zoom-in;
+        border: 1px solid var(--border);
       }
+
+      .post-date { font-size: .8rem; color: var(--muted); display: block; margin-top: .25rem; }
+
+      /* ===== TL;DR ===== */
+
+      /* If you add classes in MDX */
+      h2.tldr-heading { color: var(--accent); margin-bottom: .35rem; font-weight: 700; }
+      article .tldr {
+        color: var(--accent);
+        font-weight: 700;     /* bold */
+        font-style: normal;   /* no italics */
+        font-size: clamp(1.125rem, 1rem + 1vw, 1.5rem);
+        line-height: 1.6;
+        margin: .25rem 0 1.0rem;
+      }
+      /* Neutralize old left bar if present */
+      article .tldr-box { border: 0; padding-left: 0; }
+
+      /* Automatic fallback — works with plain Markdown:
+         make the TL;DR heading and the FIRST paragraph after it green/bold. */
+      h2[id*="tldr"], h2[id*="tl-dr"] {
+        color: var(--accent);
+        font-weight: 700;
+      }
+      h2[id*="tldr"] + p,
+      h2[id*="tl-dr"] + p {
+        color: var(--accent);
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      /* ===== Horizontal gallery base (one image per view) ===== */
+      .hscroll { position: relative; margin: 1rem 0; }
+      .hscroll .track {
+        display: flex; gap: 12px; overflow-x: auto; padding-bottom: 4px;
+        scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+      }
+      .hscroll .item { flex: 0 0 100%; max-width: 100%; scroll-snap-align: start; }
+      .hscroll figure { margin: 0; }
+      .hscroll img { display:block; width:100%; height:auto; border: 1px solid var(--border); }
+      .hscroll figcaption { color: var(--muted); font-size: .8rem; padding: 6px 0; text-align:center; }
+
+      /* Subtle triangle arrows */
+      .hscroll .arrow {
+        position: absolute; top: 50%; transform: translateY(-50%);
+        width: 44px; height: 44px; background: transparent; border: 0; cursor: pointer;
+        opacity: .35;
+      }
+      .hscroll .arrow.left  { left: 8px; }
+      .hscroll .arrow.right { right: 8px; }
+      .hscroll .arrow::before {
+        content: ""; display:block; margin: 0 auto; width:0; height:0;
+        border-top:10px solid transparent; border-bottom:10px solid transparent;
+      }
+      .hscroll .arrow.right::before { border-left: 14px solid var(--accent); }
+      .hscroll .arrow.left::before  { border-right:14px solid var(--accent); }
+      @media (hover:hover){ .hscroll:hover .arrow { opacity:.7; } }
 
       footer {
         max-width: 980px;
@@ -80,35 +138,10 @@ const { title = "Project Fawn" } = Astro.props;
         text-align: center;
       }
 
-      .signup {
-        max-width: 640px;
-        margin: 0 auto 16px;
-        display: flex;
-        gap: 8px;
-        align-items: center;
-      }
-
-      .signup input[type="email"] {
-        flex: 1;
-        padding: 12px 12px;
-        border: 1px solid var(--border);
-        background: transparent;
-        color: var(--fg);
-        outline: none;
-      }
-
-      .signup button {
-        padding: 12px 14px;
-        border: 1px solid var(--fg);
-        background: transparent;
-        color: var(--fg);
-        cursor: pointer;
-      }
-
-      .signup button:hover {
-        background: color-mix(in srgb, var(--fg) 10%, transparent);
-      }
-
+      .signup { max-width: 640px; margin: 0 auto 16px; display: flex; gap: 8px; align-items: center; }
+      .signup input[type="email"] { flex: 1; padding: 12px 12px; border: 1px solid var(--border); background: transparent; color: var(--fg); outline: none; }
+      .signup button { padding: 12px 14px; border: 1px solid var(--fg); background: transparent; color: var(--fg); cursor: pointer; }
+      .signup button:hover { background: color-mix(in srgb, var(--fg) 10%, transparent); }
       .copyright { margin-top: 12px; font-size: .85rem; }
     </style>
   </head>
@@ -121,11 +154,12 @@ const { title = "Project Fawn" } = Astro.props;
     </header>
 
     <main>
-      <slot />
+      <article>
+        <slot />
+      </article>
     </main>
 
     <footer>
-      <!-- Site-wide Formspree signup -->
       <form class="signup" action="https://formspree.io/f/mwprbglv" method="POST">
         <input type="email" name="email" placeholder="you@example.com" required />
         <button type="submit">Sign Up</button>

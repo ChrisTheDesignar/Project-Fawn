@@ -1,0 +1,67 @@
+---
+import { Image } from 'astro:assets';
+export interface Item { src: any; alt: string; caption?: string; }
+interface Props { images: Item[]; label?: string; }
+const { images = [], label = 'Image gallery' } = Astro.props;
+const uid = `g-${Math.random().toString(36).slice(2)}`;
+---
+
+<div class="hscroll" id={uid} aria-roledescription="carousel" aria-label={label}>
+  <button class="arrow left"  type="button" aria-label="Previous" data-dir="-1"></button>
+  <button class="arrow right" type="button" aria-label="Next"     data-dir="1"></button>
+
+  <div class="track" tabindex="0">
+    {images.map((it) => (
+      <figure class="item">
+        <a href={it.src.src} class="full" data-caption={it.caption ?? ''}>
+          <Image src={it.src} alt={it.alt} loading="lazy" decoding="async" widths={[720, 960, 1200]} sizes="100vw" />
+        </a>
+        {it.caption && <figcaption>{it.caption}</figcaption>}
+      </figure>
+    ))}
+  </div>
+</div>
+
+<dialog class="lightbox">
+  <button class="close" aria-label="Close">×</button>
+  <img alt="" />
+  <p class="caption"></p>
+</dialog>
+
+<style>
+  /* Lightbox */
+  .lightbox { border: none; background: transparent; padding: 0; }
+  .lightbox::backdrop { background: rgba(0,0,0,.85); }
+  .lightbox img { max-width: 92vw; max-height: 82vh; display:block; margin: 6vh auto 0; }
+  .lightbox .caption { color: var(--muted); text-align: center; margin: .5rem 0 2rem; }
+  .lightbox .close { position: fixed; top: 12px; right: 16px; background: transparent; border: 1px solid var(--border); color: var(--fg); font-size: 22px; width: 36px; height: 36px; cursor: pointer; }
+</style>
+
+<script>
+  const root = document.getElementById(import.meta.env.SSR ? '' : uid);
+  const dlg = root?.nextElementSibling; // the <dialog>
+  if (root && dlg instanceof HTMLDialogElement) {
+    const track = root.querySelector('.track');
+    const prev = root.querySelector('.arrow.left');
+    const next = root.querySelector('.arrow.right');
+    const imgEl = dlg.querySelector('img');
+    const capEl = dlg.querySelector('.caption');
+    const closeBtn = dlg.querySelector('.close');
+
+    const scrollByPage = (dir) => track.scrollBy({ left: dir * track.clientWidth, behavior: 'smooth' });
+    prev?.addEventListener('click', () => scrollByPage(-1));
+    next?.addEventListener('click', () => scrollByPage(1));
+
+    track.querySelectorAll('a.full').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        imgEl.src = a.getAttribute('href');
+        capEl.textContent = a.dataset.caption || '';
+        dlg.showModal();
+      });
+    });
+
+    closeBtn?.addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+  }
+</script>

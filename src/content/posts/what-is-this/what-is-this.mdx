@@ -1,13 +1,217 @@
 ---
-title: "What is This?"
+title: "WHAT IS THIS?"
 description: "What is Project Fawn, where did the idea come from? What are the goals of the project?"
-pubDate: 2025-08-13
+pubDate: 2025-08-26
 draft: false
 cover: ./3d-printed-ski-boot-sketch.jpg
 coverAlt: "3D Printed Ski Boot Sketch By Chris Trunek"
 ---
+import { Image } from 'astro:assets';
+
+import xRayKnee from './xray-knee.jpg';
+import redSnakeTraffic from './red-snake-traffic.jpg';
+import coldBoots from './cold-boots.jpg';
+import greenLowPolyBoot from './green-low-poly-boot.jpg';
+import paperDeerStatue from './paper-deer-statue.jpg';
+import skiTouringOnDaymakerPrototypes from './ski-touring-on-daymaker-prototypes.jpg';
+import bailKeepers from './bail-keepers.jpg';
+import daymakerBslJig from './daymaker-bsl-jig.jpg';
+import img1 from './blue-boot-insta-hero.jpg';
+import img2 from './blue-boot-insta-cuff.jpg';
+import img3 from './blue-boot-insta-tongue.jpg';
+import img4 from './blue-boot-insta-layers.jpg';
+import img5 from './blue-boot-insta-heel.jpg';
+import img6 from './blue-boot-insta-toe.jpg';
+
+---
+## TL;DR
+Project Fawn is a rethink of the classic ski boot to improve safety, access, and fit by leveraging 3D printing, Artificial intelligence, and related technologies. I’m building it in public and inviting YOU to help shape it.
+
+---
+
+## ORIGINS
+I’ve been interested in ski equipment since I was a child. My journey into the ski industry began by waxing skis in the basement of a small Ohio shop called <a href="https://img1.wsimg.com/isteam/ip/20baadad-a2ad-488b-8d40-ef0d0d93fc57/sign%20n%20store.jpg/:/" target="_blank" rel="noopener noreferrer" className="text-[#A8FFB0] hover:underline">Ferdl Asters</a>.
+
+I soon got deeply invested in freestyle as the twin-tip revolution of the early 2000s took hold. I helped shape and maintain one of the Midwest’s most legendary terrain parks at <a href="https://www.snowtrails.com/" target="_blank" rel="noopener noreferrer" className="text-[#A8FFB0] hover:underline">Snow Trails</a>{" "} outside Mansfield, Ohio. I then started selling equipment and skiing for <a href="https://www.aspenskiandboard.com/" target="_blank" rel="noopener noreferrer" className="text-[#A8FFB0] hover:underline">Aspen Ski and Board</a>{" "}while studying industrial design at The Ohio State University, where I conceptualized a Line Reactor–inspired, knee-safe, freestyle-focused ski binding system for my <a href="https://www.christrunekdesign.com/" target="_blank" rel="noopener noreferrer" className="text-[#A8FFB0] hover:underline">thesis</a>{" "}after blowing out my own knee on a bio 720 that drifted off line into the icy chunder lining the landing of another early Ohio terrain park. While finalizing my degree, I began working as an industrial designer at <a href="https://tridentinvents.com/" target="_blank" rel="noopener noreferrer" className="text-[#A8FFB0] hover:underline">Trident Design</a>, where I did a great deal of concept sketching, 3D modeling and rendering, patent research, and frequent work with early industrial 3D-printed prototypes.
+
+Upon graduating I left for Utah and worked remotely for Trident while skiing every day, clocking late-night design shifts between the epic powder days of the 2010–2011 season.
+
+Eventually that stopped making sense, and I began working at <a href="https://www.jans.com/" target="_blank" rel="noopener noreferrer" className="text-[#A8FFB0] hover:underline">Jans Mountain Outfitters</a>{" "} in Park City, where I learned a great deal about ski-boot fitting, binding testing, and setup. I had been building <a href="https://www.christrunekdesign.com/copy-2-of-skis" target="_blank" rel="noopener noreferrer" className="text-[#A8FFB0] hover:underline">custom longboard skateboards</a>{" "} since middle school, and I transitioned that hobby into <a href="https://www.christrunekdesign.com/copy-of-skis-1" target="_blank" rel="noopener noreferrer" className="text-[#A8FFB0] hover:underline">ski building</a>{" "}while working at Jans’ tuning center, <a href="https://www.jans.com/rennstall-ski-tuning?srsltid=AfmBOoollP1fhhfKJ8aIlmUgagwOOkMfAJdtfMEVFMtKXW0Q_Bwp7CEA" target="_blank" rel="noopener noreferrer" className="text-[#A8FFB0] hover:underline">Rennstall </a>{" "}, at the base of Park City Resort. There I learned the black arts of race-ski tuning, and most importantly I could properly finish and tune the skis I was building, running them after hours through the grinding machines required to refine base and edges from their raw molded finish.
+
+That ski-building endeavor led to early involvement in the founding of <a href="https://www.vishnufreeski.com/" target="_blank" rel="noopener noreferrer" className="text-[#A8FFB0] hover:underline">Vishnu Skis</a>{" "} with Emmett Davis and Kale Cipperman. after parting ways I went on to work at <a href="https://www.modaliti.com/" target="_blank" rel="noopener noreferrer" className="text-[#A8FFB0] hover:underline">Modaliti Design</a>{" "} where I assisted on product designs for, among others, <a href="https://www.surefoot.com/" target="_blank" rel="noopener noreferrer" className="text-[#A8FFB0] hover:underline">Surefoot Ski Boots</a>. Later—and more permanently, I went on to start <a href="https://www.daymakertouring.com/" target="_blank" rel="noopener noreferrer" className="text-[#A8FFB0] hover:underline">Daymaker Touring</a>{" "} alongside Giray Dadali, where we’ve helped thousands of people around the world get uphill on their favorite skis.
+
+Through all of this, a pattern kept nagging me. Compared to other activities, skiing seems to be challenged by three stubborn friction points:
 
 
-# A LIVING DESIGN PROCESS THAT GROWS FULLY CUSTOM PERFORMANCE DRIVEN 3D PRINTABLE SKI BOOTS
-Post 2 coming soon
+
+<a href={xRayKnee.src} target="_blank" rel="noopener noreferrer">
+  <Image
+    src={xRayKnee}
+    alt="An x-ray from what would be my second knee surgery"
+    sizes="(min-width: 980px) 980px, 100vw"
+    style="width:100%; height:auto;"
+  />
+</a>
+
+## Safety
+Skiing is dangerous. Unlike many other active and potentially dangerous pursuits, skiers are uniquely plagued by persistent injuries caused by being bound to the skis. Everyone knows that if you ski, there’s a good chance you might eventually blow a knee.
+
+
+<a href={redSnakeTraffic.src} target="_blank" rel="noopener noreferrer">
+  <Image
+    src={redSnakeTraffic}
+    alt="a chatGPT generated image of traffic hell getting to the mountain"
+    sizes="(min-width: 980px) 980px, 100vw"
+    style="width:100%; height:auto;"
+  />
+</a>
+
+## Accessibility
+
+Going skiing is time-consuming and stressful unless you can be all-in and wrap your lifestyle around it. Getting proper equipment is difficult, and if you get it wrong, it takes lots of trial and error to correct. All of this is expensive, and when you already have a million other things to do, the barriers stack up—and you don’t ski.
+
+<a href={coldBoots.src} target="_blank" rel="noopener noreferrer">
+  <Image
+    src={coldBoots}
+    alt="chatGPT generated image highlighting how ill fitting ski boots result in poor circulation"
+    sizes="(min-width: 980px) 980px, 100vw"
+    style="width:100%; height:auto;"
+  />
+</a>
+
+## Ski Boots
+Given the above—and how difficult it is to get properly fitted in the “right” boot—ski boots are a big downside for many people. Worse, ill-fitted boots contribute to another common problem: cold feet.
+
+These pain points slowly became clear to me over the years and have always bothered me. Through Daymaker Touring, we’ve done a lot to address them, but I knew there was much more that could be done.
+
+In parallel, I had been 3D printing a wide variety of parts on various platforms and processes through my work as an industrial designer outside the ski industry. While I’ve worked with many advanced prototyping methods, what really excites me is the accessibility of fused deposition modeling (FDM), the technology common in low-cost desktop printers. Designing parts specifically tuned to the strengths and weaknesses of this process has proven fertile ground for innovation, and it started to occur to me that a 3D-printed ski boot might be genuinely feasible if approached properly.
+
+## A FIRST-PRINCIPLES BOOT
+
+
+<div className="hscroll" aria-roledescription="carousel" aria-label="First principles boots">
+  <button className="arrow left"  type="button" aria-label="Previous image" />
+  <button className="arrow right" type="button" aria-label="Next image" />
+
+  <div className="track" tabIndex={0}>
+    {[
+      [skiTouringOnDaymakerPrototypes, 'Chris Trunek, Giray Dadali and Alec Finke of Daymaker Touring ski touring on 3D printed prototype parts'],
+      [bailKeepers, 'Batch production of Bail Keeper parts'],
+      [daymakerBslJig, 'A 3D printed tool to replicate boot sole lengths and check binding fit'],
+    ].map(([src, caption], i) => (
+      <figure className="item" key={i}>
+        <a href={src.src} className="full" data-caption={caption}>
+          <img src={src.src} alt={caption} loading="lazy" />
+        </a>
+        <figcaption>{caption}</figcaption>
+      </figure>
+    ))}
+  </div>
+</div>
+
+
+On the Daymaker side we’d already ski-toured on plenty of 3D-printed prototypes, we had produced roughly 10,000 production-grade NinjaFlex TPU “bail keepers” for the Daymaker Classic, and we relied day in and out on 3D printed setup tools that replicated an adjustable boot sole, so I knew the material reality wasn’t science fiction. Around 2018–2019 I started poking at the idea of a fully 3D-printed boot. What I found indicated that the surface had been scratched, but most examples didn’t feel like new directions in performance boot design—more like tech demos for the prototyping industry.
+
+research gallery
+
+On a long flight back from Japan, I came prepared with colored paper, pencils, a soundtrack, and a question: What would a 3D-printed boot look like?
+
+Two- and three-piece ski-boot shells are the way they are because of how they are made. Injection molding imposes specific constraints that echo through their design and the experience of using them. Modern ski boots have gotten quite good—amazing, actually. But the generalist nature of the manufacturing process means no ski boot is truly fit to an individual’s foot in its entirety, and if we’re honest, the ritual of cramming your foot in and out of performance shells isn’t very fun. A custom footbed helps enormously, and boot punching and grinding can eliminate hot spots while keeping a snug, secure fit, but the reality is this level of customization is difficult to achieve and the results are highly dependent on the bootfitter’s skill.
+
+Additive manufacturing, on the other hand, provides a very different rulebook for part design with the potential to radically reshape what a ski boot even is. With that in mind I took my first stab at sketching what a 3D-printed boot might look like.
+
+<div className="hscroll" aria-roledescription="carousel" aria-label="Blue Boot Sketches">
+  <button className="arrow left"  type="button" aria-label="Previous image" />
+  <button className="arrow right" type="button" aria-label="Next image" />
+  <div className="track" tabIndex={0}>
+    {[
+      [img1, 'Sketched on a plane from Japan with colored pencil and neon paper, this was a first take at exploring what a 3D printed boot might be'],
+      [img2, 'Patterned geometry in the interior of the boot'],
+      [img3, 'Laces? How do those work?'],
+      [img4, 'Printing layout for slicing the dual material print'],
+      [img5, 'Layer alignment of the boot heel'],
+      [img6, 'The boot is printed in segments which are joined, somehow, to each other'],
+    ].map(([src, caption], i) => (
+      <figure className="item" key={i}>
+        <a href={src.src} className="full" data-caption={caption}>
+          <img src={src.src} alt={caption} loading="lazy" />
+        </a>
+        <figcaption>{caption}</figcaption>
+      </figure>
+    ))}
+  </div>
+</div>
+
+It quickly became clear that this had potential—but also huge hurdles. Printing the boot would allow total customization of the shell. Printed liners could be co-printed with the shell material; variable cushioning, ventilation, and circulation-boosting reliefs could be printed right into the part. With that potential, however, an obvious pitfall emerged: printing a boot shell that operates under enormous stress is not optimal. The size and geometric complexity make the print more prone to failure and, most importantly, issues inherent in FDM 3D printing make failure at the layer lines during use a highly probable—and potentially catastrophic—outcome.
+
+During this time, the Cybertruck was revealed, and the low-poly aesthetic of its design was brutally on display. That influence, and a nostalgia and appreciation for early N64 and PlayStation graphics, had me wondering what that might look like applied to a ski boot. That “low-polygon count” aesthetic does work well for 3D-printed parts, as geometrically flat printed faces appear consistent, whereas curving faces can display irregularities due to Z-axis layer lines.
+
+
+<a href={greenLowPolyBoot.src} target="_blank" rel="noopener noreferrer">
+  <Image
+    src={greenLowPolyBoot}
+    alt="Green low-poly boot sketch"
+    sizes="(min-width: 980px) 980px, 100vw"
+    style="width:100%; height:auto;"
+  />
+</a>
+
+
+I bashed out the next sketch on my iPad. I knew there was something there—but what exactly? This boot was built from two main 3D prints, opening to step in. The sharp geometric edges interlocking to tie the structure together, reminiscent of serrated parting lines in stealth-fighter design. I liked it and could see it was intriguing, but it was quick and low-res; there was still a lot to resolve.
+
+Another thing quickly became evident: there was huge potential to innovate here, but doing so fully would require a broad range of expertise. I knew I had some of the skills required to tackle this endeavor, but leaning into other knowledge bases could really accelerate progress. I’ve seen how 3D printers have transformed from clunky and cumbersome to scary fast and capable through open, collaborative design. A customized 3D-printed ski boot seems well suited to that development model. If I can get the ball rolling with a pipeline to printable boots, that pipeline can be rapidly developed and improved by a whole host of participants from different backgrounds.
+
+## BUILD IT IN PUBLIC
+
+To do this right, we need many disciplines to get excited about collaborating on this idea. Ski-industry veterans like shop owners, bootfitters, and legacy manufacturers have a huge amount of potential to contribute and participate. Equally exciting is integrating state of the art knowledge from a broad range of related fields. Add in feedback loops from real-world skiers and I think that this can become a North Star we can all work toward, so we each benefit uniquely while the sport benefits broadly. By addressing these problems head-on, I believe skiing can experience a surge in excitement, participation, and growth that people will want to be part of.
+
+A second, more personal goal with this approach is to flip my own workflow. Most of my best work has happened pre-launch, in stealth, because that’s how business as usual works. For Project Fawn, I want to try the opposite: open, public-facing development—product development as content. Comment-section suggestions driving implementation in real time. Secrecy and perfection rejected in favor of transparent, imperfect progression.
+
+## THE PLATFORM VISION
+
+Think of a web workflow that turns your biometrics into a digital last—stance, foot geometry, and performance goals—then compiles a printable boot file tuned to your precise biomechanics. This file is pure data, capable of being fabricated anywhere in the world, producible on a sliding scale of accessibility. I want this process to be followable with DIY open-source tools, printable on basic desktop machines, and capable of delivering strong performance at unheard-of costs. At the same time, I want to facilitate a workflow that allows professional service providers to handle any part of the pipeline so the boots can be obtained with minimal customer involvement and consistent quality.
+
+## WHY THE DEER?
+
+When this idea was percolating, a white fawn was spotted near our parents’ homes in rural Ohio. Across cultures, a white deer has been a prominent signal of change and rebirth. Sure enough, we welcomed our first child shortly after.
+
+<a href={paperDeerStatue.src} target="_blank" rel="noopener noreferrer">
+  <Image
+    src={paperDeerStatue}
+    alt="Papercraft Low Poly Fawn"
+    sizes="(min-width: 980px) 980px, 100vw"
+    style="width:100%; height:auto;"
+  />
+</a>
+
+
+With the new baby came the nursery décor, and the forest-deer motif became a theme. I built a from neon cardstock I had lying around for printing flyers. The build used a few different colored sheets; I figured it would be neat to visualize how it was paneled. 
+
+Once completed—holding the rigid paper sculpture and feeling how the whole thing flexed and snapped back into place instead of folding—the metaphors, signals, and concepts I had been picking up on all suddenly coalesced. Flat, thin pieces assembled geometrically into a large, complex 3D structure was the direction I would take.
+
+That insight was key to addressing the classic 3D-printing headache mentioned earlier: the Z-axis problem, where the final part is consistently strong left-to-right and front-to-back, but prone to failure up and down. This occurs because interlayer bonds aren’t typically as strong as the extruded paths that make up the layers. On low-cost printers, various issues can amplify this, and specific design features can make failure almost guaranteed compared to an injection-molded part.
+
+If you think about a ski-boot shell and the forces it experiences during skiing, it’s easy to imagine how those Z-axis weaknesses could result in catastrophic failure if you simply tried to 3D print current two- or three-piece shell-wrapped boots.
+
+Now imagine the tessellated layout in the paper deer: each tile can be printed so that almost all of the forces it experiences are in the part’s relative XY plane. A precision-crafted geometric edge aligns the next tile, and this process repeats around the boot’s geometry to construct its entire structure from optimally aligned 3D-printed components. This creates essentially the most 3D-printer-friendly geometry possible, and the exterior faces end up being the most aesthetically pleasing surfaces (with vast potential for customization we can explore). By breaking the part into smaller pieces, any printing or fit errors can be identified and replaced locally instead of scrapping the whole boot. What’s more, this approach allows even basic single-material printers to achieve dual-material functionality by stacking two different print files. Keeping the geometry smaller means faster prints on smaller, less expensive machines. The low-poly design language from that green Cybertruck sketch wasn’t just an aesthetic; it was a manufacturing strategy optimized for 3D printing.
+
+## WHERE THIS GOES NEXT?
+
+To do this right, I knew I had to build Project Fawn as a container for this work. Without an interactive home, those ideas would just sit dormant in my archives. By building an online home—separate from social-media limits and existing platforms—I can push these ideas to others who can act on them.
+
+No doubt I’ve been busy over the last few years, but the big thing limiting progress was the knowledge gap required to bring a complex online project like this to life. I knew this wasn’t something that could live on a simple site-building platform, and that’s all I had experience with, so the idea sat.
+
+With the development of artificial intelligenceo over the last few years, it’s now possible to make many of the ideas I’ve been dreaming about happen, and tools like ChatGPT have already helped me make considerable progress. The problems holding this project back are exactly the kinds of things AI excels at.
+
+As I push this forward, I plan to begin by publishing blog-style content covering the backlog of ideas that still need to be presented properly. While there are many problems still to overcome, I’ve thought this process through much further than I’ve shown here.
+
+At the same time, I’ll be working on this site to add functionality and—once the back catalog is uploaded—start building this process in real time, working through failures and successes to bring the idea into reality. While this tile-based concept is the leading edge right now, it’s quite possible the process might steer the outcome in radically different directions, and that’s OK too.
+
+If you want to get involved, have ideas to share, or just want to follow along, add your email to the interest list here and I’ll keep you in the loop until I build account functionality with commenting and posting. The goal is to host these conversations right here, on-platform, in real time.
+
+That’s a wrap for this post. If you made it to the end you’re a champ. Thanks for taking the time to read about these ideas. I hope you’ll find this as exciting as I do, and that we can work to make it happen. It’d be great to be skiing early versions of these this winter.
+
+Thank you, and stay tuned.
+
+Chris
 

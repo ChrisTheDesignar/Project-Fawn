@@ -4,7 +4,7 @@ const posts = defineCollection({
   type: 'content',
 
   // Make the URL /post/<file-name>/ instead of /post/folder/file/
-  slug: ({ id }) => id.split('/').pop()!.replace(/\.(md|mdx)$/, ''),
+slug: ({ id }) => id.split('/').pop()!.replace(/\.(md|mdx)$/, ''),
 
   schema: ({ image }) =>
     z.object({
