@@ -2,17 +2,29 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('posts'))
-  .filter((p) => !p.data.draft)
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const raw = await getCollection('posts');
 
-const formatDate = (d: Date) =>
-  d.toLocaleDateString(undefined, {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    timeZone: 'UTC',
-  });
+// treat true/"true"/"TRUE" as draft; everything else = not draft
+const isDraft = (v: unknown) =>
+  v === true || (typeof v === 'string' && v.toLowerCase() === 'true');
+
+// safe date parse (supports Date or string). null if bad/missing
+const toDate = (v: unknown) => {
+  const d = v instanceof Date ? v : new Date(String(v ?? ''));
+  return Number.isNaN(d.getTime()) ? null : d;
+};
+
+const posts = raw
+  .filter((p) => !isDraft(p.data.draft))
+  .map((p) => {
+    const d = toDate(p.data.pubDate);
+    return { ...p, _date: d, _time: d ? d.getTime() : 0 };
+  })
+  .sort((a, b) => b._time - a._time); // NEWEST → OLDEST
+
+const fmt = new Intl.DateTimeFormat(undefined, {
+  year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC',
+});
 ---
 
 <BaseLayout title="Home">
@@ -21,15 +33,15 @@ const formatDate = (d: Date) =>
     p.subhead { margin: 0 0 14px 0; color: #ccc; font-size: .95rem; }
 
     section.posts { margin-top: 16px; }
+    .post-list { list-style: none; margin: 0; padding: 0; }
+
     .post-preview {
       display: flex; gap: 14px; padding: 12px 0;
       border-top: 1px solid var(--border);
       align-items: flex-start;
       text-decoration: none; color: inherit;
     }
-    .post-preview:hover {
-      background: color-mix(in srgb, var(--fg), transparent 92%);
-    }
+    .post-preview:hover { background: color-mix(in srgb, var(--fg), transparent 92%); }
 
     .post-thumb {
       width: clamp(140px, 20vw, 220px);
@@ -38,6 +50,7 @@ const formatDate = (d: Date) =>
       object-fit: cover;
       display: block;
       border: 1px solid var(--border);
+      flex: 0 0 auto;
     }
 
     .post-meta { flex: 1; }
@@ -54,24 +67,34 @@ const formatDate = (d: Date) =>
   <section class="posts">
     <h2 style="font-size:.95rem; margin: 0 0 10px 0;">Recent Posts</h2>
 
-    {posts.map((post) => (
-      <a class="post-preview" href={`/post/${post.slug}/`}>
-        {post.data.cover && (
-          <img
-            class="post-thumb"
-            src={post.data.cover.src}
-            alt={post.data.coverAlt ?? post.data.title}
-            loading="lazy"
-          />
-        )}
-        <div class="post-meta">
-          <h3 class="post-title">{post.data.title}</h3>
-          <time datetime={post.data.pubDate.toISOString()} class="post-date">
-  {formatDate(post.data.pubDate)}
-</time>
-          {post.data.description && <p class="post-desc">{post.data.description}</p>}
-        </div>
-      </a>
-    ))}
+    {posts.length === 0 ? (
+      <p>No posts yet.</p>
+    ) : (
+      <ul class="post-list">
+        {posts.map((post) => (
+          <li>
+            <a class="post-preview" href={`/post/${post.slug}/`} aria-label={`Open “${post.data.title}”`}>
+              {post.data.cover && (
+                <img
+                  class="post-thumb"
+                  src={post.data.cover.src}
+                  alt={post.data.coverAlt ?? post.data.title}
+                  loading="lazy"
+                />
+              )}
+              <div class="post-meta">
+                <h3 class="post-title">{post.data.title}</h3>
+                <time
+                  datetime={(post._date ?? new Date(0)).toISOString()}
+                  class="post-date">
+                  {post._date ? fmt.format(post._date) : 'No date'}
+                </time>
+                {post.data.description && <p class="post-desc">{post.data.description}</p>}
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
   </section>
 </BaseLayout>

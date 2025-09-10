@@ -138,13 +138,61 @@ const { title = "Project Fawn" } = Astro.props;
         text-align: center;
       }
 
+/* full-bleed utility (lets sections span the page width) */
+.full-bleed {
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Instagram embed: remove white card & let it expand */
+.instagram-media {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
       .signup { max-width: 640px; margin: 0 auto 16px; display: flex; gap: 8px; align-items: center; }
       .signup input[type="email"] { flex: 1; padding: 12px 12px; border: 1px solid var(--border); background: transparent; color: var(--fg); outline: none; }
       .signup button { padding: 12px 14px; border: 1px solid var(--fg); background: transparent; color: var(--fg); cursor: pointer; }
       .signup button:hover { background: color-mix(in srgb, var(--fg) 10%, transparent); }
       .copyright { margin-top: 12px; font-size: .85rem; }
+    
+/* --- CTD footer link & layout --- */
+.footer-meta{
+  display: flex;
+  align-items: center;            /* vertically center text + logo */
+  justify-content: space-between; /* text left edge, logo to right edge */
+  gap: 12px;
+  margin-top: 12px;
+  text-align: left;               /* override footer's center text */
+  width: 100%;
+}
+.footer-ctd img{
+  height: 28px; width: auto;
+  opacity: .4;
+  transition: opacity .2s ease;
+}
+.footer-ctd:hover img,
+.footer-ctd:focus-visible img{ opacity: 1; }
+.footer-ctd:focus-visible{ outline: 2px dashed var(--accent); outline-offset: 4px; }
+
+/* Small screens: keep logo at the right edge */
+@media (max-width: 520px){
+  .footer-meta{ flex-wrap: wrap; }
+  .footer-ctd{ margin-left: auto; }  /* pushes logo to the right */
+}
+
+    
+    
     </style>
   </head>
+
+<script async src="https://www.instagram.com/embed.js"></script>
+
 
   <body>
     <header>
@@ -164,7 +212,13 @@ const { title = "Project Fawn" } = Astro.props;
         <input type="email" name="email" placeholder="you@example.com" required />
         <button type="submit">Sign Up</button>
       </form>
-      <div class="copyright">© {new Date().getFullYear()} Project Fawn. All rights reserved.</div>
+     <div class="footer-meta">
+  <div class="copyright">© {new Date().getFullYear()} Project Fawn. All rights reserved. A CTD LAB. </div>
+  <a href="https://www.christrunekdesign.com/" class="footer-ctd" target="_blank" rel="noopener"
+  aria-label="Visit Chris Trunek Designs (opens in new tab)">
+  <img src="/images/ctd-mark-white.png" alt="CTD" />
+  </a>
+</div>
     </footer>
   </body>
 </html>
