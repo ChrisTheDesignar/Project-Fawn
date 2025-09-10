@@ -9,16 +9,35 @@ coverAlt: "Chris Trunek and Colton Barry of Powder Innovation"
 import { Image } from 'astro:assets';
 
 
+import projectFawnPanel from './project-fawn-panel.jpg';
+
 ---
 ## TL;DR
 Chris Trunek and Colton Barry of Powder Innovation sit down to discuss the in's and out's of Project Fawn. 
 
 ---
 
-EMBED VIDEO LINK
+<div class="yt-embed">
+  <iframe
+    src="https://www.youtube.com/embed/ivJh_ty7QyI?si=1gudKg0fAa-Itd52"
+    title="YouTube video"
+    loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
+  ></iframe>
+</div>
 
 
-Part two of a two part interview with Colton Barry of <a href="https://www.powderinnovation.com/" target="_blank" rel="noopener noreferrer" className="text-[#A8FFB0] hover:underline">Powder Innovation</a>. In part one we discussed the origins and design practices of Daymaker Touring. It can be viewed Here:
-https://www.youtube.com/watch?v=Jpy4xEeIEwg&t=1118s
+In this interview we discuss the advantages, opportunities, and challenges of 3D printing ski boots. Below are some of the main images from this video.   
+<br />
 
 
+<a href={projectFawnPanel.src} target="_blank" rel="noopener noreferrer">
+  <Image
+    src={projectFawnPanel}
+    alt="iPad and ChatGPT sketches detailing printed boot layout"
+    sizes="(min-width: 980px) 980px, 100vw"
+    style="width:100%; height:auto;"
+  />
+</a>
