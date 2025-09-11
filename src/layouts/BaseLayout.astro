@@ -1,9 +1,15 @@
 ---
-export interface Props {
-  title?: string;
-}
+export interface Props { title?: string; }
 const { title = "Project Fawn" } = Astro.props;
+
+import { inject } from '@vercel/analytics';
+
+// Only inject in production so dev stays clean
+if (import.meta.env.PROD) {
+  inject();
+}
 ---
+
 
 <!doctype html>
 <html lang="en">
