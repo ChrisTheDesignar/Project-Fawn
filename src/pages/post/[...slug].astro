@@ -37,8 +37,37 @@ const formatDate = (d: Date) =>
     {formatDate(post.data.pubDate)}
   </time>
 
-  <!-- Let BaseLayout's ARTICLE styles handle width/typography -->
+  <!-- Post content -->
   <div style="margin-top:1rem; line-height:1.6;">
     <Content />
   </div>
+
+  <!-- Divider -->
+  <hr class="rule" />
+
+  <!-- Comments -->
+  <section id="comments" class="comments" style="max-width:980px;margin:24px auto 0;">
+    <h2 style="margin:0 0 .5rem 0;">Comments</h2>
+    <div class="giscus" style="width:100%;">
+      <script
+        src="https://giscus.app/client.js"
+        data-repo="ChrisTheDesignar/Project-Fawn"
+        data-repo-id="R_kgDOPFJPMg"
+        data-category="Blog Post Comments"
+        data-category-id="DIC_kwDOPFJPMs4Cv23q"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+      </script>
+      <noscript>
+        Please enable JavaScript to view the comments powered by Giscus.
+      </noscript>
+    </div>
+  </section>
 </BaseLayout>
