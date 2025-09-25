@@ -1,0 +1,72 @@
+# Project Fawn – Licensing Overview
+
+Project Fawn is a multi-component open-source project. To balance openness, collaboration, and brand integrity, different components of this repository are licensed under different terms.
+
+---
+
+## 1. Hardware (CAD, STLs, Tiles)
+
+Licensed under **CERN Open Hardware License – Strongly Reciprocal (CERN-OHL-S)**.
+
+- You may use, modify, manufacture, and distribute products based on these design files.
+- If you distribute modified versions of the designs or products based on them, you must share your modifications under the same license.
+
+See [LICENSE.HARDWARE](LICENSE.HARDWARE) for the full text.
+
+---
+
+## 2. Software (Website, Plinko Logic)
+
+Licensed under **GNU General Public License v3 (GPLv3)**.
+
+- You may use, modify, and distribute this code.
+- If you distribute modified versions, you must release them under GPLv3.
+
+See [LICENSE.SOFTWARE](LICENSE.SOFTWARE) for the full text.
+
+---
+
+## 3. Documentation & Creative Content
+
+Licensed under **Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)**.
+
+- You may share and adapt the documentation and educational materials, including for commercial purposes.
+- You must provide attribution and release derivatives under the same license.
+
+See [LICENSE.DOCS](LICENSE.DOCS) for the full text.
+
+---
+
+## 4. Trademark Policy
+
+“Project Fawn” and the Project Fawn logo are trademarks of **CTD LLC**.
+
+You may not use the “Project Fawn” name, logo, or related brand assets in a way that implies official endorsement or association unless you comply with the Project Fawn participation guidelines.
+
+Commercial uses of the Project Fawn name (including product sales, marketing, or promotional materials) must be connected to the official Project Fawn pipeline (i.e. generated through the Project Fawn software or authorized tooling) and follow attribution requirements outlined in this repository.
+
+For forks or derivative projects, you must clearly state that your work is a fork/derivative and not an official Project Fawn release.
+
+---
+
+## 5. Warranty & Liability Disclaimer
+
+**USE AT YOUR OWN RISK:**  
+Project Fawn designs are experimental and provided “AS IS,” without warranty of any kind.
+
+By using these files, you acknowledge that you are solely responsible for:
+- Manufacturing accuracy
+- Testing and validating safety
+- Any injuries, equipment damage, or other consequences resulting from their use
+
+CTD LLC and all contributors disclaim any liability for damages or injuries resulting from the use or misuse of these designs.
+
+---
+
+## 6. Contribution Agreement
+
+By contributing to Project Fawn (via pull request, issue, or other method), you agree that:
+- Your contributions will be released under the same licenses described above.
+- You will not assert patent claims against Project Fawn or its contributors for your contributions.
+
+---
