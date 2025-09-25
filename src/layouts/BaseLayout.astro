@@ -231,18 +231,46 @@ if (import.meta.env.PROD) {
       </article>
     </main>
 
-    <footer>
-      <form class="signup" action="https://formspree.io/f/mpwrbglv" method="POST">
-        <input type="email" name="email" placeholder="you@example.com" required />
-        <button type="submit">Sign Up</button>
-      </form>
-     <div class="footer-meta">
-  <div class="copyright">© {new Date().getFullYear()} Project Fawn. All rights reserved. A CTD LAB. </div>
-  <a href="https://www.christrunekdesign.com/" class="footer-ctd" target="_blank" rel="noopener"
-  aria-label="Visit Chris Trunek Designs (opens in new tab)">
-  <img src="/images/ctd-mark-white.png" alt="CTD" />
-  </a>
-</div>
-    </footer>
+   <footer>
+  <form class="signup" action="https://formspree.io/f/mpwrbglv" method="POST">
+    <input type="email" name="email" placeholder="you@example.com" required />
+    <button type="submit">Sign Up</button>
+  </form>
+
+  <div class="footer-meta">
+    <div class="footer-left">
+      <p class="copyright">
+        © {new Date().getFullYear()} CTD LLC · Project Fawn is open source.
+      </p>
+
+      <nav class="footer-links" aria-label="Project links">
+        <a href="https://github.com/ChrisTheDesignar/Project-Fawn" target="_blank" rel="noopener">
+          GitHub
+        </a>
+        <span aria-hidden="true">·</span>
+        <a href="https://github.com/ChrisTheDesignar/Project-Fawn/blob/main/LICENSE" target="_blank" rel="noopener">
+          License
+        </a>
+        <span aria-hidden="true">·</span>
+        <a href="https://github.com/ChrisTheDesignar/Project-Fawn/blob/main/NOTICE.md" target="_blank" rel="noopener">
+          Disclaimer
+        </a>
+      </nav>
+
+      <p class="license-summary">
+        Hardware: CERN-OHL-S · Software: GPLv3 · Docs: CC BY-SA 4.0
+      </p>
+    </div>
+
+    <a href="https://www.christrunekdesign.com/" class="footer-ctd" target="_blank" rel="noopener"
+       aria-label="Visit Chris Trunek Design (opens in new tab)">
+      <img src="/images/ctd-mark-white.png" alt="CTD" />
+    </a>
+  </div>
+</footer>
+
+
+  </body>
+</html>
   </body>
 </html>
