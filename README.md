@@ -1,11 +1,11 @@
-
 <p align="center">
   <img src="public/images/project-fawn-logo.png" alt="Project Fawn Logo" width="300">
 </p>
 
-
-**Project Fawn** is an open-source platform for creating the next generation of fully custom, 3D-printed ski boots.  
-Our goal is to reinvent ski boot design with a community-driven approach — open, transparent, and continuously improving.
+<p align="center">
+  <strong>Project Fawn</strong><br>
+  Open-source platform for creating the next generation of fully custom, 3D-printed ski boots.
+</p>
 
 ---
 
@@ -17,7 +17,6 @@ Our goal is to reinvent ski boot design with a community-driven approach — ope
 ## 💡 Contribute
 This repository is where the work happens.  
 - 🛠️ **Discussions:** Share ideas, ask questions, and collaborate — [Join Discussions](../../discussions)
-)
 - 📝 **Issues & PRs:** Report bugs, propose features, or contribute code.
 
 We believe innovation happens faster together — whether you're a designer, skier, engineer, or just curious, you're welcome here.
@@ -25,7 +24,14 @@ We believe innovation happens faster together — whether you're a designer, ski
 ---
 
 ## 📜 License
-Project Fawn is open-source and released under [choose-a-license] — contributions are encouraged and appreciated.
+Project Fawn uses a **multi-license model**:
+
+- **Hardware** → CERN OHL-S  
+- **Software** → GPLv3  
+- **Documentation** → CC BY-SA 4.0  
+- **Brand** → Protected by CTD LLC trademark  
+
+🔗 **[Read full license terms here](LICENSE)**
 
 ---
 
