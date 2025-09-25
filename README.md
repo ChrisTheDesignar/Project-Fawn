@@ -16,7 +16,8 @@ Our goal is to reinvent ski boot design with a community-driven approach — ope
 
 ## 💡 Contribute
 This repository is where the work happens.  
-- 🛠️ **Discussions:** Share ideas, ask questions, and collaborate — [Join Discussions](link-to-discussions)
+- 🛠️ **Discussions:** Share ideas, ask questions, and collaborate — [Join Discussions](../../discussions)
+)
 - 📝 **Issues & PRs:** Report bugs, propose features, or contribute code.
 
 We believe innovation happens faster together — whether you're a designer, skier, engineer, or just curious, you're welcome here.
