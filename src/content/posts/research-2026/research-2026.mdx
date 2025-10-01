@@ -6,7 +6,11 @@ draft: false
 cover: ./research-2026-cover.jpg
 coverAlt: "tessellated artwork by VJ KURU"
 ---
+import { Image } from 'astro:assets';
 
+import stickman from './stickman.jpg';
+import inflatableDome from './inflatable-dome.jpg';
+import fingerTrap from './finger-trap.jpg';
 
 
 
@@ -26,7 +30,16 @@ Since my last push into this endeavor, a few years have past. I’ve kept gather
 
 ## 3D Scanning
 
-EMBED HERE
+<div class="yt-embed">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/rmnV1XlnFWA"
+    title="YouTube video"
+    loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
+  ></iframe>
+</div>
 I came across this tech via an instagram story. The tech maps live AI generated filters to a video feed. 
 - https://www.instagram.com/reel/DMVWQVEOyS5/?utm_source=ig_web_copy_link
 - https://www.miragelsd.net/
@@ -48,6 +61,7 @@ Another one discovered via an instagram post. Sparse representation and construc
 - https://www.instagram.com/reel/DLCoHkkqATW/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
 - https://lizhihao6.github.io/Sparc3D/
 
+<br />
 
 <blockquote
   class="instagram-media"
@@ -58,67 +72,213 @@ Another one discovered via an instagram post. Sparse representation and construc
 discovered via this post. looks like he skis via insta post so will have to invite contribution
 - https://www.instagram.com/reel/DN35nOVDj9_/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
 
-Interfaceable 3D video 
-https://www.instagram.com/reel/DKojoaIt4km/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+<br />
 
-Flexion and tension systems
-Spherical flexural joint
-https://www.instagram.com/p/CQoK1ovjdNo/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+<blockquote
+  class="instagram-media"
+  data-instgrm-permalink="https://www.instagram.com/reel/DKojoaIt4km/"
+  data-instgrm-version="14"
+  data-instgrm-captioned
+></blockquote>
+Interfaceable 4D video Guassian Splatting
+- https://www.instagram.com/reel/DKojoaIt4km/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+- https://www.4dv.ai/viewer/salmon_10s?showdemo=4dv
 
-Texture mapping a head with AI
-https://www.instagram.com/reel/DKwNLxkvQcv/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+<br />
+
+<blockquote
+  class="instagram-media"
+  data-instgrm-permalink="https://www.instagram.com/reel/DKwNLxkvQcv/"
+  data-instgrm-version="14"
+  data-instgrm-captioned
+></blockquote>
+Texture mapping a head with AI. Might be a silly post but comments section has some reccomendations for proper UV mapping. One user (jamess4rt) reccomends RizomUV.
+- https://www.instagram.com/reel/DKwNLxkvQcv/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+
+
+
+## Flexion and tension systems
+<img
+    src="https://ars.els-cdn.com/content/image/1-s2.0-S0141635921000726-gr5.jpg"
+    alt="flexural joint design"
+    loading="lazy"
+    decoding="async"
+    className="w-full h-auto rounded-xl ring-1 ring-white/10"
+    referrerPolicy="no-referrer"
+  />
+This sperical joint design was resently developed by researchers at Delft University of Technology in the Netherlands. below is the research publication. This design represents a radical departure for a spherical joint that represents how 3D printing can alter longstanding assumptions of what a thing is. This research may be directly relatable to the flexation systems which must be developed to replace the tradtional pivot points of injection molded ski boots.
+- https://www.sciencedirect.com/science/article/pii/S0141635921000726?via%3Dihub
+
+<br />
 
 
 —
 ## Biomechanics
-Spacewear monitoring footbeds
-https://www.instagram.com/p/DJ3cuLiAhe_/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
 
-Motion tracking post
-https://www.instagram.com/reel/DOi-zW6iePi/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+  <video
+    src="https://carv-web.b-cdn.net/Carv%202%20-%20main%20pages/3d%20motion%20graphic-optimised.mp4"
+    controls
+    playsInline
+    preload="metadata"
+    style={{ width: '100%', height: 'auto', borderRadius: '12px' }}
+  />
+  Carv 6 axis gyroscopic sensor used to mate up with coaching app to analyize your skiing performance. This sensor, maybe even paired with a footbed style sensor could offer an electronic way to detect phontom foot body position 
+- https://getcarv.com/
 
-Video reconstruction
-https://www.instagram.com/reel/DNu-jvWYobv/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+<br />
 
+## Motion Tracking
+
+<a href={stickman.src} target="_blank" rel="noopener noreferrer">
+  <Image
+    src={stickman}
+    alt="screengrab from stickman program capturing legs"
+    sizes="(min-width: 980px) 980px, 100vw"
+    style="width:100%; height:auto;"
+  />
+</a>
+Cool vibe coding expiriment by @sugiyamer on instagram where your webcam feed is converted into an animated stickman. motion capture interface like this could be used to capture biometric data to build boot file on. for example, pronation a
+- https://www.instagram.com/reel/DOi-zW6iePi/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+- https://musetech.info/0004_matchistick_human/
+
+<blockquote
+  class="instagram-media"
+  data-instgrm-permalink="https://www.instagram.com/reel/DNu-jvWYobv/"
+  data-instgrm-version="14"
+  data-instgrm-captioned
+></blockquote>
+Workflow for reconstructing scene from video
+- https://www.instagram.com/reel/DNu-jvWYobv/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+
+<br />
+
+<div className="mx-auto max-w-[980px] aspect-video rounded-xl overflow-hidden ring-1 ring-white/10">
+  <iframe
+    src="https://player.vimeo.com/video/1089179672"
+    title="Vimeo video"
+    loading="lazy"
+    allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allowFullScreen
+    className="w-full h-full"
+  />
+</div>
 Printed bio knee
-https://www.instagram.com/reel/DMIlKGOsSkZ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+- https://cns.utexas.edu/news/research/3d-printing-breakthrough-paves-way-next-gen-medical-devices-and-stretchable?utm_campaign=feed&utm_medium=referral&utm_source=later-linkinbio
 
-Opensource 3d scanner photogrammetry
-https://www.instagram.com/reel/DN6P_RfAp7c/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
-
-—
 
 ## Electronics and sensing
-eFlesh sensor
-https://www.instagram.com/reel/DLEq13Wx2vR/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
 
-—
+  <video
+    src="https://e-flesh.com/static/videos/eflesh_release_0618.mp4"
+    controls
+    playsInline
+    preload="metadata"
+    style={{ width: '100%', height: 'auto', borderRadius: '12px' }}
+  />
+eFlesh sensor: This exciting electromechanical setup could be intergrated into the ski boots printed pad structure. Could be used to detect impacts, ski forces, biomechanical location for phantom foot detetcion, etc. 
+- https://e-flesh.com/
+- https://www.instagram.com/reel/DLEq13Wx2vR/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+
 
 ## Structure
-Inflatable structure
-https://www.instagram.com/reel/DKe-JK1RhYm/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
 
-Rigid Zipper 
-https://www.instagram.com/p/DOnzYIwjNW3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+<a href={inflatableDome.src} target="_blank" rel="noopener noreferrer">
+  <Image
+    src={inflatableDome}
+    alt="inflatable rgb dome"
+    sizes="(min-width: 980px) 980px, 100vw"
+    style="width:100%; height:auto;"
+  />
+</a>
+Inflatable structures designed by pneuhaus. Inflating might be an alternative means of tensioning the boot?
+- https://www.instagram.com/reel/DKe-JK1RhYm/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+- https://www.pneu.haus/
+- https://www.instagram.com/reel/DOeYzUHj6c2/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
 
-Morphing topology
-https://www.instagram.com/reel/DKuVLiyygMP/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
 
-Morphing modular robotics
-https://www.instagram.com/reel/DMYD4IJTPPY/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+<br />
 
-Pneumatic Jamming hardening on demand
-https://www.instagram.com/reel/DNyYPHd2sS1/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+<div class="yt-embed">
+  <iframe
+    src="https://www.youtube.com/embed/CUhpmac98wE?si=hLyU7u7eJlH84kz4"
+    title="YouTube video"
+    loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
+  ></iframe>
+</div>
+Rigid Zipper by Bjørn Pedersen. While we might not need a rigid zipper on our boot, the mechanics of it's structure are interesting for how boot components might connect flexibly and rigidly depending on a selected state.
+- https://www.instagram.com/p/DOnzYIwjNW3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+- https://he-ideas.weebly.com/ideas-and-stuff.html
 
+<br />
+
+<blockquote
+  class="instagram-media"
+  data-instgrm-permalink="https://www.instagram.com/reel/DKuVLiyygMP"
+  data-instgrm-version="14"
+  data-instgrm-captioned
+></blockquote>
+Morphing topology 4D cube. could expandable mesh elements be used in a ski boot? 
+- https://www.instagram.com/reel/DKuVLiyygMP/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+
+<br />
+
+<img
+    src="https://www.engineering.columbia.edu/sites/default/files/styles/masthead_1920_px_wide/public/2025-07/masthead-robot-metabolism.jpg?itok=azpgJE7X"
+    alt="morphing modular robot structure"
+    loading="lazy"
+    decoding="async"
+    className="w-full h-auto rounded-xl ring-1 ring-white/10"
+    referrerPolicy="no-referrer"
+  />
+Morphing modular robotics developed by researchers at Columbia University. Could this be a structure of the mesh-boot?
+- https://www.engineering.columbia.edu/about/news/robots-grow-consuming-other-robots
+- https://www.instagram.com/reel/DMYD4IJTPPY/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+
+<br />
+
+<img
+    src="https://xlab.iii.u-tokyo.ac.jp/wp-content/uploads/2018/08/xSlate-768x275.jpg"
+    alt="pneumatic jamming structure"
+    loading="lazy"
+    decoding="async"
+    className="w-full h-auto rounded-xl ring-1 ring-white/10"
+    referrerPolicy="no-referrer"
+  />
+Pneumatic Jamming stiffness controlled surface developed by Takayuki Hirai, Satoshi Nakamaru, Yoshihiro Kawahara, and Yasuaki Kakehi at the University of Tokyo.
+- https://xlab.iii.u-tokyo.ac.jp/projects/xslate/
+- https://www.instagram.com/reel/DNyYPHd2sS1/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+
+<br />
+
+<a href={stickman.src} target="_blank" rel="noopener noreferrer">
+  <Image
+    src={fingerTrap}
+    alt="chinese finger trap"
+    sizes="(min-width: 980px) 980px, 100vw"
+    style="width:100%; height:auto;"
+  />
+</a>
 The geometry and mechanics of the Chinese finger trap
-https://www.sciencedirect.com/science/article/abs/pii/S2352431624000804
+- https://www.sciencedirect.com/science/article/abs/pii/S2352431624000804
 
+<br />
 
-Modular inflatable structure cell
-https://www.instagram.com/reel/DOeYzUHj6c2/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+<blockquote
+  class="instagram-media"
+  data-instgrm-permalink="https://www.instagram.com/reel/C8W4U9cSCej/"
+  data-instgrm-version="14"
+  data-instgrm-captioned
+></blockquote>
+Cardboard Papercraft assembly technique by KRAF Studio.
+- https://www.instagram.com/reel/C8W4U9cSCej/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+- https://cardboardtemplates.com/
 
-Cardboard Papercraft assembly technique
-https://www.instagram.com/reel/C8W4U9cSCej/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+<br />
+
 Tesselated wood structure
 https://www.instagram.com/p/C4J9bfZLhb1/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
 
@@ -133,7 +293,7 @@ https://www.sciencedirect.com/science/article/abs/pii/S2352431624000804
 
 —
 
-##Printing
+## Printing
 Nonplanar composite core
 https://www.instagram.com/p/CS-MipChBYv/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
 
@@ -160,7 +320,7 @@ Morphologically optimized joint
 https://www.instagram.com/reel/C9CHXFkM10j/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
 
 
-#Modeling/ CAD/ math
+## Modeling/ CAD/ math
 NormalMagic in Blender
 https://www.instagram.com/reel/DORJhsTjAiF/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
 
@@ -170,7 +330,7 @@ https://www.instagram.com/reel/DK2NUa0tc_p/?utm_source=ig_web_copy_link&igsh=MzR
 Peter explains FEA
 https://www.instagram.com/reel/DMEDyW9i4JO/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
 
-##AI
+## AI
 JSON Image prompting
 https://www.instagram.com/reel/DLTpkBSoiwX/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
 
