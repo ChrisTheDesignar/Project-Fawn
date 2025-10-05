@@ -1,0 +1,85 @@
+---
+/**
+ * type: 'youtube' | 'vimeo' | 'instagram' | 'image' | 'video' | 'pdf'
+ * id:   video id when convenient (yt/vimeo)
+ * url:  full URL for iframe sources (yt/vimeo/instagram)
+ * src:  direct file for image/video/pdf
+ */
+const { type, id, url, src, alt = '', title = 'embed' } = Astro.props;
+
+const ytSrc    = id ? `https://www.youtube.com/embed/${id}` : url;
+const vimeoSrc = id ? `https://player.vimeo.com/video/${id}` : url;
+const igSrc    = !url ? '' : (url.endsWith('/') ? `${url}embed` : `${url}/embed`);
+---
+<div class="embed-square">
+  {type === 'youtube' && (
+    <iframe
+      src={ytSrc}
+      title={title}
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+      class="fit-contain no-scroll"
+    />
+  )}
+
+  {type === 'vimeo' && (
+    <iframe
+      src={vimeoSrc}
+      title={title}
+      loading="lazy"
+      allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+      class="fit-contain no-scroll"
+    />
+  )}
+
+  {type === 'instagram' && (
+    <iframe
+      src={igSrc}
+      title={title}
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+      class="fit-contain no-scroll"
+    />
+  )}
+
+  {type === 'image' && (
+    <img src={src} alt={alt} loading="lazy" decoding="async" class="media-contain" />
+  )}
+
+  {type === 'video' && (
+    <video src={src} controls playsinline preload="metadata" class="media-contain" />
+  )}
+
+  {type === 'pdf' && (
+    <iframe src={src} title={title} loading="lazy" class="fit-contain no-scroll" />
+  )}
+</div>
+
+<style>
+  .embed-square {
+    position: relative;
+    aspect-ratio: 1 / 1;              /* always square frame */
+    width: 100%;
+    max-width: 460px;                  /* card’s media column width target */
+    border-radius: 12px;
+    overflow: hidden;                  /* hide any internal overflow */
+    background: #000;                  /* black bars when aspect differs */
+    box-shadow: 0 0 0 1px rgba(255,255,255,.08) inset;
+  }
+  /* Ensure entire content visible inside the square – never cropped */
+  .fit-contain, .media-contain {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+    border: 0;
+  }
+  /* defensively hide scrollbars on iframe engines that still render them */
+  .no-scroll::-webkit-scrollbar { display: none; }
+</style>

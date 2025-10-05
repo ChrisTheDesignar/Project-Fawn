@@ -36,6 +36,9 @@
         "coverAlt": {
           "type": "string"
         },
+        "coverImage": {
+          "type": "string"
+        },
         "$schema": {
           "type": "string"
         }

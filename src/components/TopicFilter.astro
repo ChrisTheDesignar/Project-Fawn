@@ -1,0 +1,128 @@
+---
+/**
+ * Props (optional)
+ * - topics?: string[]        // if omitted, topics are auto-built from .research-card on the page
+ * - defaultTopic?: string    // default = "All"
+ */
+const { topics = [], defaultTopic = "All" } = Astro.props;
+
+// Server-side fallback so you at least see "All" before JS runs
+const initialList = topics.length
+  ? (topics.includes("All") ? topics : ["All", ...topics])
+  : ["All"];
+---
+<nav class="topic-filter" aria-label="Topics">
+  <ul id="topic-pills" class="pill-grid">
+    {initialList.map((t) => (
+      <li>
+        <button class={`pill ${t === defaultTopic ? 'is-active' : ''}`} data-topic={t} type="button">
+          {t}
+        </button>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<script>
+  // --- helpers ---
+  const norm = (s) => (s || '').toLowerCase().trim();
+  const pretty = (s) =>
+    s.replace(/\s+/g, ' ')
+     .split(' ')
+     .map(w => w ? w[0].toUpperCase() + w.slice(1) : w)
+     .join(' ');
+
+  const pillsUL = document.getElementById('topic-pills');
+
+  // Build topics from cards if you didn’t pass a topics prop
+  if (pillsUL && pillsUL.querySelectorAll('button').length <= 1) {
+    const cards = Array.from(document.querySelectorAll('.research-card'));
+    const found = Array.from(new Set(
+      cards.flatMap((c) =>
+        (c.getAttribute('data-topics') || '')
+          .split('|')
+          .map(norm)
+          .filter(Boolean)
+      )
+    ));
+
+    const topicsList = ["All", ...found];
+    pillsUL.innerHTML = '';
+    topicsList.forEach((t, i) => {
+      const li = document.createElement('li');
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = `pill ${i === 0 ? 'is-active' : ''}`;
+      btn.dataset.topic = t;
+      btn.textContent = t === 'all' ? 'All' : pretty(t);
+      li.appendChild(btn);
+      pillsUL.appendChild(li);
+    });
+  }
+
+  const getPills = () => pillsUL.querySelectorAll('.pill');
+  const getCards = () => Array.from(document.querySelectorAll('.research-card'));
+  const topicsOf = (card) =>
+    (card.getAttribute('data-topics') || '')
+      .split('|')
+      .map(norm)
+      .filter(Boolean);
+
+  function matches(card, topic) {
+    if (norm(topic) === 'all') return true;
+    return topicsOf(card).includes(norm(topic));
+  }
+
+  function applyFilter(topic) {
+    const cards = getCards();
+    cards.forEach((card) => {
+      card.style.display = matches(card, topic) ? '' : 'none';
+    });
+
+    getPills().forEach((p) =>
+      p.classList.toggle('is-active', norm(p.dataset.topic) === norm(topic))
+    );
+
+    const url = new URL(location.href);
+    url.searchParams.set('topic', topic);
+    history.replaceState({}, '', url);
+  }
+
+  // wire up clicks
+  getPills().forEach((pill) =>
+    pill.addEventListener('click', () => applyFilter(pill.dataset.topic))
+  );
+
+  // init from ?topic= or default
+  const start = new URLSearchParams(location.search).get('topic') || "All";
+  applyFilter(start);
+</script>
+
+<style>
+  .topic-filter { margin: 0 0 .9rem; }
+  .pill-grid {
+    list-style: none; margin: 0; padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));  /* mobile: 2 cols */
+    gap: .5rem .6rem;
+  }
+  @media (min-width: 900px) {
+    .pill-grid { grid-template-columns: repeat(4, minmax(0,1fr)); } /* desktop: 4 cols */
+  }
+  .pill {
+    width: 100%;
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: .35rem;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px; line-height: 1;
+    font-weight: 800;
+    color: #0d1f1a;
+    background: rgb(52 211 153);
+    box-shadow: 0 0 0 1px rgba(0,0,0,.15) inset;
+    cursor: pointer;
+    user-select: none;
+  }
+  .pill:hover { filter: brightness(1.06); }
+  .pill.is-active { outline: 2px solid rgba(255,255,255,.25); outline-offset: 1px; }
+</style>

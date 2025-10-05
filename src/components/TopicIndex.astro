@@ -1,0 +1,69 @@
+---
+export interface Props {
+  topics: string[];          // e.g. ["All","Printing","3D Scanning",...]
+  defaultTopic?: string;     // optional, falls back to "All"
+}
+const { topics, defaultTopic = "All" } = Astro.props;
+---
+
+<div class="not-prose my-4">
+  <div class="flex flex-wrap gap-2" id="topic-filter" data-default={defaultTopic}>
+    {topics.map((t) => (
+      <button
+        type="button"
+        class="filter-chip px-3 py-1 rounded-full text-xs tracking-wide
+               border border-zinc-700/60 bg-zinc-900/50 text-zinc-200
+               hover:bg-zinc-800 hover:border-zinc-600
+               data-[active=true]:bg-emerald-500/15 data-[active=true]:border-emerald-400
+               data-[active=true]:text-emerald-300"
+        data-topic={t}
+        aria-pressed="false"
+      >
+        {t}
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  // runs client-side
+  const root = document.getElementById('topic-filter');
+  if (root) {
+    const chips = [...root.querySelectorAll('button.filter-chip')];
+    const defaultTopic = root.dataset.default || 'All';
+
+    // helper
+    const setActive = (topic) => {
+      chips.forEach(btn => {
+        const isActive = btn.dataset.topic === topic;
+        btn.dataset.active = String(isActive);
+        btn.setAttribute('aria-pressed', String(isActive));
+      });
+    };
+
+    const applyFilter = (topic) => {
+      const cards = [...document.querySelectorAll('article.research-card')];
+      if (topic === 'All') {
+        cards.forEach(c => (c.style.display = ''));
+      } else {
+        cards.forEach(c => {
+          const t = c.dataset.topic || '';
+          c.style.display = t === topic ? '' : 'none';
+        });
+      }
+      setActive(topic);
+      const url = new URL(location.href);
+      url.searchParams.set('topic', topic);
+      history.replaceState(null, '', url.toString());
+    };
+
+    // init from ?topic= or default
+    const params = new URLSearchParams(location.search);
+    const start = params.get('topic') || defaultTopic;
+    applyFilter(start);
+
+    chips.forEach(btn => {
+      btn.addEventListener('click', () => applyFilter(btn.dataset.topic));
+    });
+  }
+</script>
