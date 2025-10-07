@@ -1,135 +1,144 @@
 ---
-/**
- * Props
- * - title:   string
- * - topic:   string | string[]
- * - date:    string
- * - summary: string
- * - links:   { href: string; label: string }[]
- */
-const { title, topic, date, summary = '', links = [] } = Astro.props;
+import { normalizeTopics, toSlug } from "@/lib/topics";
 
-// normalize topics -> lower-case array, then CSV for data attribute
-const topicsArr: string[] = (Array.isArray(topic) ? topic : [topic]).filter(Boolean);
-const topicsCSV = topicsArr.map(t => String(t).toLowerCase()).join(',');
-const hasMedia = Astro.slots.has('media');
+type Link = { href: string; label: string };
+interface Props {
+  title: string;
+  topic: string | string[];
+  date: string;             // YYYY-MM-DD
+  summary: string;
+  links?: Link[];
+}
+
+const p = Astro.props as Props;
+const topics = normalizeTopics(p.topic);
+const topicSlugs = topics.map(toSlug);
+
+// “term” used by giscus + fallback link
+const term = `${p.date}::${p.title}`;
+const ghDiscuss =
+  `https://github.com/ChrisTheDesignar/Project-Fawn/discussions/new` +
+  `?category=${encodeURIComponent('Research Card Comments')}` +
+  `&title=${encodeURIComponent(term)}`;
 ---
-<article class="research-card" data-topics={topicsCSV} data-date={date}>
-  <div class="card-grid">
-    <!-- LEFT: Square media (or placeholder) -->
-    <div class="media-col">
-      {hasMedia ? (
-        <div class="embed-square media-fit">
-          <slot name="media" />
-        </div>
-      ) : (
-        <div class="embed-square placeholder">
-          <div class="ph-wrap">
-            <div class="ph-icon">▣</div>
-            <div class="ph-text">No media</div>
-          </div>
-        </div>
-      )}
+
+<article class="rcard" data-topics={topicSlugs.join(',')}>
+  <div class="rcard-grid">
+    <!-- MEDIA -->
+    <div class="media">
+      <slot name="media" />
     </div>
 
-    <!-- RIGHT: text -->
-    <div class="text-col">
-      <header class="meta">
-        <div class="badges">
-          {topicsArr.map((t) => <span class="pill">{t}</span>)}
-        </div>
-        {date && <time class="date">{date}</time>}
+    <!-- TEXT -->
+    <div class="meta">
+      <header class="head">
+        <h3 class="title">{p.title}</h3>
+        <time datetime={p.date} class="date">{p.date}</time>
       </header>
 
-      <h3 class="title">{title}</h3>
+      <p class="summary">{p.summary}</p>
 
-      {summary && <p class="summary">{summary}</p>}
-
-      {links?.length > 0 && (
+      {p.links?.length ? (
         <ul class="links">
-          {links.map((l) => (
-            <li><a href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a></li>
+          {p.links.map((l) => (
+            <li><a href={l.href} target="_blank" rel="noopener">{l.label}</a></li>
           ))}
         </ul>
-      )}
+      ) : null}
+
+      <!-- Topic pills -->
+      <ul class="pills">
+        {topics.map((t) => (
+          <li><a class="pill" data-topic href={`?topic=${toSlug(t)}`}>{t}</a></li>
+        ))}
+      </ul>
+
+      <!-- COMMENTS -->
+      <details class="comments" data-term={term}>
+        <summary>Comments</summary>
+
+        <div class="comment-actions">
+          <a class="gh-discuss" href={ghDiscuss} target="_blank" rel="noopener">Open on GitHub</a>
+        </div>
+
+        <!-- giscus mounts here when opened -->
+        <div class="cwrap"></div>
+      </details>
     </div>
   </div>
 </article>
 
 <style>
-  .research-card {
-    max-width: 980px;
-    margin: 1rem auto;
-    padding: 14px;
-    background: rgba(255,255,255,.04);
-    border-radius: 14px;
-    box-shadow: 0 0 0 1px rgba(255,255,255,.08) inset;
-  }
+/* CARD */
+.rcard{border:1px solid #2a2f3a;border-radius:14px;background:#0b0f14;padding:14px}
+.rcard-grid{display:grid;gap:14px}
+@media (min-width: 900px){ .rcard-grid{grid-template-columns: 360px 1fr; align-items:start} }
 
-  /* keep two columns even on mobile */
-  .card-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 14px;
-  }
+/* MEDIA */
+.media{border-radius:10px;overflow:hidden;background:#00000025;min-height:220px}
+@media (min-width: 900px){ .media{min-height:260px} }
+.media :global(img), .media :global(video), .media :global(iframe){ width:100%; height:100%; display:block; }
+.media :global(iframe){ border:0 }
 
-  .media-col { min-width: 0; }
-  .text-col  { min-width: 0; display: grid; align-content: start; gap: .5rem; }
+/* TEXT */
+.head{display:flex; align-items:baseline; justify-content:space-between; gap:.5rem; margin-bottom:.25rem}
+.title{font-weight:700; text-transform:uppercase; letter-spacing:.04em}
+.date{opacity:.75; font-size:.9rem}
+.summary{margin:.25rem 0 .6rem}
+.links,.pills{display:flex; flex-wrap:wrap; gap:.45rem; list-style:none; padding:0; margin:0 0 .5rem}
+.pill{display:inline-block; padding:.22rem .58rem; border:1px solid #0ea66b; border-radius:999px; font-size:.8rem; color:#0ea66b; background:#0ea66b22}
+.pill:hover{background:#0ea66b33}
 
-  /* square frame */
-  .embed-square {
-    position: relative;
-    aspect-ratio: 1 / 1;
-    width: 100%;
-    max-width: 460px;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #000;
-    box-shadow: 0 0 0 1px rgba(255,255,255,.08) inset;
-  }
+/* COMMENTS */
+.comments > summary{cursor:pointer; font-size:.82rem; opacity:.9}
+.comment-actions{margin-top:.35rem}
+.gh-discuss{font-size:.78rem; opacity:.8; text-decoration:underline}
+.cwrap{margin-top:.45rem}
 
-  /* ensure anything inside (iframe/img/video) fits without scrollbars */
-  .media-fit :is(iframe, img, video) {
-    width: 100%;
-    height: 100%;
-    display: block;
-    border: 0;
-    object-fit: contain;      /* letterbox/pillarbox inside square */
-  }
-  .media-fit iframe { overflow: hidden; }
-
-  /* placeholder */
-  .placeholder { display: grid; place-items: center; }
-  .ph-wrap { text-align: center; color: rgba(255,255,255,.5); }
-  .ph-icon { font-size: 38px; line-height: 1; }
-  .ph-text { font-size: 12px; margin-top: 4px; letter-spacing: .06em; text-transform: uppercase; }
-
-  /* pills (match TopicFilter) */
-  .pill {
-    display: inline-flex; align-items: center; justify-content: center;
-    padding: 4px 10px;
-    border-radius: 999px;
-    font-size: 11px; line-height: 1;
-    font-weight: 800;
-    color: #0d1f1a;
-    background: rgb(52 211 153);
-    box-shadow: 0 0 0 1px rgba(0,0,0,.15) inset;
-    white-space: nowrap;
-  }
-  .badges { display: flex; flex-wrap: wrap; gap: .35rem .45rem; }
-  .meta { display: flex; align-items: center; gap: .5rem; }
-  .date { margin-left: auto; font-size: 11px; opacity: .7; }
-
-  .title {
-    margin: 0;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    font-size: 18px;
-    letter-spacing: .02em;
-    text-transform: uppercase;
-  }
-  .summary { margin: 0; color: rgba(240,255,244,.9); font-size: 14px; line-height: 1.45; }
-
-  .links { list-style: none; margin: .25rem 0 0; padding: 0; display: grid; gap: .15rem; }
-  .links a { color: rgb(52 211 153); text-decoration: underline; text-underline-offset: 2px; }
-  .links a:hover { text-decoration-thickness: 2px; }
+/* Ensure the giscus iframe is visible and sized */
+.rcard .cwrap .giscus,
+.rcard .cwrap .giscus-frame{
+  display:block;
+  width:100%;
+  min-height:340px;
+  border:0;
+}
+.rcard details.comments[open] .cwrap{ padding-top:.5rem; }
 </style>
+
+<script is:client>
+  // Mount one giscus instance per card when its comments panel first opens
+  const root = document.currentScript.closest('.rcard');
+  const details = root?.querySelector('details.comments');
+  const wrap = root?.querySelector('.cwrap');
+  const term = details?.getAttribute('data-term') || 'ResearchCard';
+
+  let mounted = false;
+  function mountGiscus() {
+    if (!wrap || mounted) return;
+    if (wrap.querySelector('.giscus-frame')) { mounted = true; return; }
+
+    const s = document.createElement('script');
+    s.src = 'https://giscus.app/client.js';
+    s.async = true;
+
+    s.setAttribute('data-repo', 'ChrisTheDesignar/Project-Fawn');
+    s.setAttribute('data-repo-id', 'R_kgDOPFJPMg');
+    s.setAttribute('data-category', 'Research Card Comments');
+    s.setAttribute('data-category-id', 'DIC_kwDOPFJPMs4Cv22B');
+    s.setAttribute('data-mapping', 'specific');
+    s.setAttribute('data-term', term);
+    s.setAttribute('data-reactions-enabled', '1');
+    s.setAttribute('data-emit-metadata', '0');
+    s.setAttribute('data-input-position', 'bottom');
+    s.setAttribute('data-theme', 'preferred_color_scheme');
+    s.setAttribute('crossorigin', 'anonymous');
+
+    wrap.appendChild(s);
+    mounted = true;
+  }
+
+  // Mount on first open; also mount immediately if already open on load
+  details?.addEventListener('toggle', () => { if (details.open) mountGiscus(); }, { once: true });
+  if (details?.open) mountGiscus();
+</script>

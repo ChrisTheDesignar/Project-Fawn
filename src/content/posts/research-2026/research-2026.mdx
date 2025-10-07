@@ -12,48 +12,26 @@ import TopicFilter from '@/components/TopicFilter.astro';
 import ResearchCard from '@/components/ResearchCard.astro';
 import Embed from '@/components/Embed.astro';
 
+
+
+
 ## TL;DR
 posts, reels, groups, open source projects, research papers, and more, all referenced in a catagorized easy to view format
 
 This is a running and evolving list. I just reformatted everything in this "research card" style format, so that all these links can be displayed and explored more easily, and to attach to specific drawings and upcoming posts. The most relevant and applicable posts are likely to be the research papers which have informed my direction. There is a lot to read through and digest here! 
 
-<TopicFilter topics={[
-  "Printing","3D Scanning","3D printed footwear","Structure",
-  "Biomechanics","Electronics & Sensing","Motion Tracking","Filaments","Other"
-]} />
+<TopicFilter />
+
+<div class="grid grid-cols-2 gap-6 research-grid">
+  {/* your <ResearchCard> list here */}
+</div>
 
 <div class="grid grid-cols-2 gap-6">
   {/* ===== Example cards (showing single + multi-topic) ===== */}
 
   <ResearchCard
-    title="3D Print Anything Without Supports"
-    topic="Printing"
-    date="2025-09-03"
-    summary="Non-planar printing that could eliminate supports—huge time saver for complex boot shells."
-    links={[
-      { href: "https://www.youtube.com/watch?v=M51bMMVWbC8&t=1s", label: "YouTube" },
-      { href: "https://github.com/jyjblrd/S4_Slicer", label: "S4 Slicer" }
-    ]}
-  >
-    <Embed slot="media" type="youtube" id="M51bMMVWbC8" />
-</ResearchCard>
-
-  <ResearchCard
-    title="Interfaceable 4D Gaussian Splatting"
-    topic={["3D Scanning","Motion Tracking"]}
-    date="2025-01-09"
-    summary="4D Gaussian splatting with an interactive viewer; could accelerate scan-to-fit pipelines."
-    links={[
-      { href: "https://www.instagram.com/reel/DKojoaIt4km/", label: "Instagram" },
-      { href: "https://www.4dv.ai/viewer/salmon_10s?showdemo=4dv", label: "4DV Demo" }
-    ]}
-  >
-    <Embed slot="media" type="instagram" url="https://www.instagram.com/reel/DKojoaIt4km/" title="4D GS reel" />
-</ResearchCard>
-  
-  <ResearchCard
   title="3D Print Anything Without Supports"
-  topic="Printing"
+  topic="3D-Printing"
   date="2025-09-03"
   summary="Non-planar printing that could eliminate supports—huge time saver for complex boot shells."
   links={[
@@ -65,8 +43,21 @@ This is a running and evolving list. I just reformatted everything in this "rese
 </ResearchCard>
 
 <ResearchCard
+  title="Interfaceable 4D Gaussian Splatting"
+  topic={["3D-Scanning","Motion Tracking"]}
+  date="2025-01-09"
+  summary="4D Gaussian splatting with an interactive viewer; could accelerate scan-to-fit pipelines."
+  links={[
+    { href: "https://www.instagram.com/reel/DKojoaIt4km/", label: "Instagram" },
+    { href: "https://www.4dv.ai/viewer/salmon_10s?showdemo=4dv", label: "4DV Demo" }
+  ]}
+>
+  <Embed slot="media" type="instagram" url="https://www.instagram.com/reel/DKojoaIt4km/" title="4D GS reel" />
+</ResearchCard>
+
+<ResearchCard
   title="Sparc3D: Sparse 3D reconstruction"
-  topic="3D Scanning"
+  topic="3D-Scanning"
   date="2024-12-02"
   summary="Sparse 3D reconstruction from key images; promising for quick boot scans."
   links={[{ href:"https://lizhihao6.github.io/Sparc3D/", label:"Project" }]}
@@ -76,7 +67,7 @@ This is a running and evolving list. I just reformatted everything in this "rese
 
 <ResearchCard
   title="Interfaceable 4D Gaussian Splatting"
-  topic={["3D Scanning", "Motion Tracking"]}
+  topic={["3D-Scanning","Motion Tracking"]}
   date="2025-01-09"
   summary="4D Gaussian splatting with an interactive viewer; could accelerate scan-to-fit pipelines."
   links={[
@@ -89,7 +80,7 @@ This is a running and evolving list. I just reformatted everything in this "rese
 
 <ResearchCard
   title="FIZO: 3D-Printed Midsoles"
-  topic={["3D printed footwear", "Structure", "Printing"]}
+  topic={["Footwear","Structure","3D-Printing"]}
   date="2025-02-07"
   summary="Lattice midsoles and a full consumer product flow; relevant to printed ski-boot cushioning stacks."
   links={[
@@ -102,7 +93,7 @@ This is a running and evolving list. I just reformatted everything in this "rese
 
 <ResearchCard
   title="Zellerfeld D7 Printed Shoes"
-  topic={["3D printed footwear", "Printing"]}
+  topic={["Footwear","3D-Printing"]}
   date="2025-07-15"
   summary="Industrial-scale printed footwear platform; materials and surface tuning ideas apply to ski-boot uppers."
   links={[{ href: "https://www.zellerfeld.com/", label: "Zellerfeld" }]}
@@ -118,7 +109,7 @@ This is a running and evolving list. I just reformatted everything in this "rese
 
 <ResearchCard
   title="Printed Open-Cell Shoes"
-  topic={["3D printed footwear", "Printing"]}
+  topic={["Footwear","3D-Printing"]}
   date="2025-05-21"
   summary="Open-cell TPU structures for breathable uppers; blueprint for ski-boot liner ventilation."
   links={[{ href: "https://www.instagram.com/reel/DGLwMSxPYgo/", label: "Instagram" }]}
@@ -128,7 +119,7 @@ This is a running and evolving list. I just reformatted everything in this "rese
 
 <ResearchCard
   title="Parametriks Printed Shoes"
-  topic={["3D printed footwear", "Printing"]}
+  topic={["Footwear","3D-Printing"]}
   date="2021-12-15"
   summary="Parametric printed footwear patterns—good reference for lattice vocabulary and foot mapping."
   links={[{ href: "https://www.instagram.com/p/CX_3vhxMKLj/", label: "Instagram" }]}
@@ -138,7 +129,7 @@ This is a running and evolving list. I just reformatted everything in this "rese
 
 <ResearchCard
   title="Spherical Flexural Joint (Delft)"
-  topic={["Structure", "Printing"]}
+  topic={["Structure","3D-Printing"]}
   date="2021-03-10"
   summary="A 3D-printable spherical flexure joint—points to hinge-less boot cuff mechanics with tunable stiffness."
   links={[{ href: "https://www.sciencedirect.com/science/article/pii/S0141635921000726", label: "Paper" }]}
@@ -209,7 +200,7 @@ This is a running and evolving list. I just reformatted everything in this "rese
 
 <ResearchCard
   title="Carv: 6-Axis Motion Sensor"
-  topic="Biomechanics"
+  topic={["Biomechanics","Motion Tracking"]}
   date="2024-11-10"
   summary="In-boot IMU system for turn analysis—useful ground truth for binding-release logic & phantom-foot detection."
   links={[{ href: "https://getcarv.com/", label: "Carv" }]}
@@ -224,7 +215,7 @@ This is a running and evolving list. I just reformatted everything in this "rese
 
 <ResearchCard
   title="WAN 2.x: Scene Reconstruction from Video"
-  topic={["Motion Tracking", "3D Scanning"]}
+  topic={["Motion Tracking","3D-Scanning"]}
   date="2025-02-05"
   summary="Reconstruct ski scenes from monocular video to extract stance/kinematics for boot-fit inference."
   links={[{ href: "https://www.instagram.com/reel/DNu-jvWYobv/", label: "Instagram" }]}
@@ -234,7 +225,7 @@ This is a running and evolving list. I just reformatted everything in this "rese
 
 <ResearchCard
   title="Foaming Filaments (TPU/ASA/PEBA)"
-  topic={["Filaments", "Printing", "3D printed footwear"]}
+  topic={["Filaments","3D-Printing","Footwear"]}
   date="2025-03-12"
   summary="Variable-density filaments for lightweight, damped structures (liners, cuffs, midsoles)."
   links={[
@@ -389,6 +380,7 @@ This is a running and evolving list. I just reformatted everything in this "rese
 >
   <Embed slot="media" type="youtube" id="Pjg33pH9RKo" />
 </ResearchCard>
+
 {/* === New research cards === */}
 
 <ResearchCard
@@ -398,29 +390,25 @@ This is a running and evolving list. I just reformatted everything in this "rese
   summary="Interlocking tab geometry useful for printable joints that snap/lock without hardware."
   links={[{ href:"https://puzzlemist.com/product/mixed-tabs-puzzle/", label:"Product" }]}
 >
-  {/* No direct media provided → placeholder will show */}
+  {/* no media provided */}
 </ResearchCard>
 
 <ResearchCard
   title="Printed DH Longboard Core"
-  topic={["Structure","Printing"]}
+  topic={["Structure","3D-Printing"]}
   date="2025-10-05"
   summary="3D-printed downhill longboard core from Meat Bicycle—great reference for layup, ribs, and load paths."
-  links={[
-    { href:"https://www.instagram.com/p/DJy5H9WxKVD/", label:"Instagram" }
-  ]}
+  links={[{ href:"https://www.instagram.com/p/DJy5H9WxKVD/", label:"Instagram" }]}
 >
   <Embed slot="media" type="instagram" url="https://www.instagram.com/p/DJy5H9WxKVD/" title="Printed DH longboard core" />
 </ResearchCard>
 
 <ResearchCard
   title="Printed E-Bike Frame Prototype"
-  topic={["Structure","Printing"]}
+  topic={["Structure","3D-Printing"]}
   date="2025-10-05"
   summary="Additively manufactured frame members for an e-moto concept—tube joins and lattice infill ideas carry over to boot frames."
-  links={[
-    { href:"https://www.instagram.com/reel/DMqlkZJBzkf/", label:"Instagram" }
-  ]}
+  links={[{ href:"https://www.instagram.com/reel/DMqlkZJBzkf/", label:"Instagram" }]}
 >
   <Embed slot="media" type="instagram" url="https://www.instagram.com/reel/DMqlkZJBzkf/" title="KyVex printed frame" />
 </ResearchCard>
@@ -430,21 +418,17 @@ This is a running and evolving list. I just reformatted everything in this "rese
   topic={["Structure","Other"]}
   date="2025-10-05"
   summary="Recursive image cube visual—useful metaphor for layered patterns / nested lattices."
-  links={[
-    { href:"https://www.instagram.com/reel/DN8rVdijyvd/", label:"Instagram" }
-  ]}
+  links={[{ href:"https://www.instagram.com/reel/DN8rVdijyvd/", label:"Instagram" }]}
 >
   <Embed slot="media" type="instagram" url="https://www.instagram.com/reel/DN8rVdijyvd/" title="Meta image cube" />
 </ResearchCard>
 
 <ResearchCard
   title="Printed Unfolding Chainmail"
-  topic={["Structure","Printing"]}
+  topic={["Structure","3D-Printing"]}
   date="2025-10-05"
   summary="Expandable chainmail pattern—candidate for cuff/liner flex panels with controllable anisotropy."
-  links={[
-    { href:"https://www.instagram.com/reel/DNRnGCytxbq/", label:"Instagram" }
-  ]}
+  links={[{ href:"https://www.instagram.com/reel/DNRnGCytxbq/", label:"Instagram" }]}
 >
   <Embed slot="media" type="instagram" url="https://www.instagram.com/reel/DNRnGCytxbq/" title="Unfolding chainmail" />
 </ResearchCard>
@@ -454,40 +438,216 @@ This is a running and evolving list. I just reformatted everything in this "rese
   topic={["Structure","Other"]}
   date="2025-10-05"
   summary="Facet geometry study; could inspire shell segmentation and triangulated bracing."
-  links={[
-    { href:"https://www.instagram.com/p/C4J9bfZLhb1/", label:"Instagram" }
-  ]}
+  links={[{ href:"https://www.instagram.com/p/C4J9bfZLhb1/", label:"Instagram" }]}
+>
+  <Embed slot="media" type="instagram" url="https://www.instagram.com/p/C4J9bfZLhb1/" title="Stellated polyhedron" />
+</ResearchCard>
+
+<ResearchCard
+  title="YouTube: 4cnJFZZRui0"
+  topic="Other"
+  date="2025-10-05"
+  summary=""
+  links={[{ href: "https://www.youtube.com/watch?v=4cnJFZZRui0", label: "YouTube" }]}
+>
+  <Embed slot="media" type="youtube" id="4cnJFZZRui0" />
+</ResearchCard>
+
+<ResearchCard
+  title="YouTube: GEHNijssAKc"
+  topic="Other"
+  date="2025-10-05"
+  summary=""
+  links={[{ href: "https://www.youtube.com/watch?v=GEHNijssAKc", label: "YouTube" }]}
+>
+  <Embed slot="media" type="youtube" id="GEHNijssAKc" />
+</ResearchCard>
+
+<ResearchCard
+  title="YouTube: ApeFBDhYebg"
+  topic="Other"
+  date="2025-10-05"
+  summary=""
+  links={[{ href: "https://www.youtube.com/watch?v=ApeFBDhYebg", label: "YouTube" }]}
+>
+  <Embed slot="media" type="youtube" id="ApeFBDhYebg" />
+</ResearchCard>
+
+<ResearchCard
+  title="YouTube: 3whlkKOXUuE"
+  topic="Other"
+  date="2025-10-05"
+  summary=""
+  links={[{ href: "https://www.youtube.com/watch?v=3whlkKOXUuE", label: "YouTube" }]}
+>
+  <Embed slot="media" type="youtube" id="3whlkKOXUuE" />
+</ResearchCard>
+
+<ResearchCard
+  title="YouTube: huxVBWoKOak"
+  topic="Other"
+  date="2025-10-05"
+  summary=""
+  links={[{ href: "https://www.youtube.com/watch?v=huxVBWoKOak", label: "YouTube" }]}
+>
+  <Embed slot="media" type="youtube" id="huxVBWoKOak" />
+</ResearchCard>
+
+<ResearchCard
+  title="YouTube: VEgwnhLHy3g"
+  topic="Other"
+  date="2025-10-05"
+  summary=""
+  links={[{ href: "https://www.youtube.com/watch?v=VEgwnhLHy3g", label: "YouTube" }]}
+>
+  <Embed slot="media" type="youtube" id="VEgwnhLHy3g" />
+</ResearchCard>
+
+<ResearchCard
+  title="YouTube: fSISiR5XIbk"
+  topic="Other"
+  date="2025-10-05"
+  summary=""
+  links={[{ href: "https://www.youtube.com/watch?v=fSISiR5XIbk", label: "YouTube" }]}
+>
+  <Embed slot="media" type="youtube" id="fSISiR5XIbk" />
+</ResearchCard>
+
+<ResearchCard
+  title="YouTube: 0p4R9IG_p2U"
+  topic="Other"
+  date="2025-10-05"
+  summary=""
+  links={[{ href: "https://www.youtube.com/watch?v=0p4R9IG_p2U", label: "YouTube" }]}
+>
+  <Embed slot="media" type="youtube" id="0p4R9IG_p2U" />
+</ResearchCard>
+
+<ResearchCard
+  title="YouTube: VZepsYvd6vY"
+  topic="Other"
+  date="2025-10-05"
+  summary=""
+  links={[{ href: "https://www.youtube.com/watch?v=VZepsYvd6vY", label: "YouTube" }]}
+>
+  <Embed slot="media" type="youtube" id="VZepsYvd6vY" />
+</ResearchCard>
+
+<ResearchCard
+  title="YouTube: sw7G7SkBBJY"
+  topic="Other"
+  date="2025-10-05"
+  summary=""
+  links={[{ href: "https://www.youtube.com/watch?v=sw7G7SkBBJY", label: "YouTube" }]}
+>
+  <Embed slot="media" type="youtube" id="sw7G7SkBBJY" />
+</ResearchCard>
+
+<ResearchCard
+  title="YouTube: ofxIkHallTI"
+  topic="Other"
+  date="2025-10-05"
+  summary=""
+  links={[{ href: "https://www.youtube.com/watch?v=ofxIkHallTI", label: "YouTube" }]}
+>
+  <Embed slot="media" type="youtube" id="ofxIkHallTI" />
+</ResearchCard>
+
+<ResearchCard
+  title="YouTube: Pjg33pH9RKo"
+  topic="Other"
+  date="2025-10-05"
+  summary=""
+  links={[{ href: "https://www.youtube.com/watch?v=Pjg33pH9RKo", label: "YouTube" }]}
+>
+  <Embed slot="media" type="youtube" id="Pjg33pH9RKo" />
+</ResearchCard>
+
+{/* === New research cards === */}
+
+<ResearchCard
+  title="Mixed Tabs Puzzle"
+  topic={["Structure","Other"]}
+  date="2025-10-05"
+  summary="Interlocking tab geometry useful for printable joints that snap/lock without hardware."
+  links={[{ href:"https://puzzlemist.com/product/mixed-tabs-puzzle/", label:"Product" }]}
+>
+  {/* no media provided */}
+</ResearchCard>
+
+<ResearchCard
+  title="Printed DH Longboard Core"
+  topic={["Structure","3D-Printing"]}
+  date="2025-10-05"
+  summary="3D-printed downhill longboard core from Meat Bicycle—great reference for layup, ribs, and load paths."
+  links={[{ href:"https://www.instagram.com/p/DJy5H9WxKVD/", label:"Instagram" }]}
+>
+  <Embed slot="media" type="instagram" url="https://www.instagram.com/p/DJy5H9WxKVD/" title="Printed DH longboard core" />
+</ResearchCard>
+
+<ResearchCard
+  title="Printed E-Bike Frame Prototype"
+  topic={["Structure","3D-Printing"]}
+  date="2025-10-05"
+  summary="Additively manufactured frame members for an e-moto concept—tube joins and lattice infill ideas carry over to boot frames."
+  links={[{ href:"https://www.instagram.com/reel/DMqlkZJBzkf/", label:"Instagram" }]}
+>
+  <Embed slot="media" type="instagram" url="https://www.instagram.com/reel/DMqlkZJBzkf/" title="KyVex printed frame" />
+</ResearchCard>
+
+<ResearchCard
+  title="Meta Image Cube"
+  topic={["Structure","Other"]}
+  date="2025-10-05"
+  summary="Recursive image cube visual—useful metaphor for layered patterns / nested lattices."
+  links={[{ href:"https://www.instagram.com/reel/DN8rVdijyvd/", label:"Instagram" }]}
+>
+  <Embed slot="media" type="instagram" url="https://www.instagram.com/reel/DN8rVdijyvd/" title="Meta image cube" />
+</ResearchCard>
+
+<ResearchCard
+  title="Printed Unfolding Chainmail"
+  topic={["Structure","3D-Printing"]}
+  date="2025-10-05"
+  summary="Expandable chainmail pattern—candidate for cuff/liner flex panels with controllable anisotropy."
+  links={[{ href:"https://www.instagram.com/reel/DNRnGCytxbq/", label:"Instagram" }]}
+>
+  <Embed slot="media" type="instagram" url="https://www.instagram.com/reel/DNRnGCytxbq/" title="Unfolding chainmail" />
+</ResearchCard>
+
+<ResearchCard
+  title="Stellated Rhombic Hexacontahedron"
+  topic={["Structure","Other"]}
+  date="2025-10-05"
+  summary="Facet geometry study; could inspire shell segmentation and triangulated bracing."
+  links={[{ href:"https://www.instagram.com/p/C4J9bfZLhb1/", label:"Instagram" }]}
 >
   <Embed slot="media" type="instagram" url="https://www.instagram.com/p/C4J9bfZLhb1/" title="Stellated polyhedron" />
 </ResearchCard>
 
 <ResearchCard
   title="3D Printed Skateboard with 3D Graphics"
-  topic={["Printing","Structure"]}
+  topic={["3D-Printing","Structure"]}
   date="2025-10-05"
   summary="Early example of printed deck with integrated surface geometry—ideas for aesthetic + functional texturing."
-  links={[
-    { href:"https://3dprintingindustry.com/news/sam-abbotts-3d-printed-skateboard-16097/", label:"Article" }
-  ]}
+  links={[{ href:"https://3dprintingindustry.com/news/sam-abbotts-3d-printed-skateboard-16097/", label:"Article" }]}
 >
-  {/* No direct media provided → placeholder */}
+  {/* placeholder */}
 </ResearchCard>
 
 <ResearchCard
   title="3D-Printed Skateboard Molds"
-  topic={["Printing","Structure"]}
+  topic={["3D-Printing","Structure"]}
   date="2025-10-05"
   summary="Printed molds for composite layups; relevant for boot shell/liner tooling and quick iteration."
-  links={[
-    { href:"https://www.youtube.com/watch?v=T406jjUYFDw", label:"YouTube" }
-  ]}
+  links={[{ href:"https://www.youtube.com/watch?v=T406jjUYFDw", label:"YouTube" }]}
 >
   <Embed slot="media" type="youtube" id="T406jjUYFDw" title="Printed molds" />
 </ResearchCard>
 
 <ResearchCard
   title="Printed Inline Skate Frames"
-  topic={["Structure","Printing","3D printed footwear"]}
+  topic={["Structure","3D-Printing","Footwear"]}
   date="2025-10-05"
   summary="Inline frames share similar bending/impact load cases with ski equipment—good benchmark for printable structural members."
   links={[
@@ -495,19 +655,17 @@ This is a running and evolving list. I just reformatted everything in this "rese
     { href:"https://slicelab.com/work/g-frames", label:"Topology-Optimized G-Frames" }
   ]}
 >
-  {/* No direct direct video for frames; links above */}
+  {/* placeholder */}
 </ResearchCard>
 
 <ResearchCard
   title="Topology-Optimized Printed Frames (SliceLab)"
-  topic={["Structure","Printing"]}
+  topic={["Structure","3D-Printing"]}
   date="2025-10-05"
   summary="Generative frame design with high stiffness-to-weight—transferable to cuff spars and chassis members."
-  links={[
-    { href:"https://slicelab.com/work/g-frames", label:"SliceLab G-frames" }
-  ]}
+  links={[{ href:"https://slicelab.com/work/g-frames", label:"SliceLab G-frames" }]}
 >
-  {/* Placeholder */}
+  {/* placeholder */}
 </ResearchCard>
 
 <ResearchCard
@@ -515,11 +673,9 @@ This is a running and evolving list. I just reformatted everything in this "rese
   topic={["Structure","Other"]}
   date="2025-10-05"
   summary="Ancient precision stone fit—reference for multi-facet mating and tolerance strategies."
-  links={[
-    { href:"https://www.reddit.com/r/BeAmazed/comments/179yee7/a_16_angle_stone_in_peru_amazing_ancient_stone/", label:"Reddit thread" }
-  ]}
+  links={[{ href:"https://www.reddit.com/r/BeAmazed/comments/179yee7/a_16_angle_stone_in_peru_amazing_ancient_stone/", label:"Reddit thread" }]}
 >
-  {/* Placeholder */}
+  {/* placeholder */}
 </ResearchCard>
 
 <ResearchCard
@@ -527,138 +683,125 @@ This is a running and evolving list. I just reformatted everything in this "rese
   topic={["Electronics & Sensing","Biomechanics"]}
   date="2025-10-05"
   summary="Thin-film pressure mapping for foot/liner interface testing; potential quick-and-dirty fit diagnostics."
-  links={[
-    { href:"https://pressuremetrics.com/", label:"Pressuremetrics" }
-  ]}
+  links={[{ href:"https://pressuremetrics.com/", label:"Pressuremetrics" }]}
 >
-  {/* Placeholder */}
+  {/* placeholder */}
 </ResearchCard>
+
 {/* ===== Filaments / Materials ===== */}
 
 <ResearchCard
   title="Foaming ASA Filament"
-  topic={["Filaments","Printing"]}
+  topic={["Filaments","3D-Printing"]}
   date="2025-10-05"
   summary="Foaming ASA for lightweight, vibration-damped printed parts—useful for shells/cuffs."
   links={[
     { href:"https://www.instagram.com/reel/DMxyGl_ABV3/", label:"Instagram" },
-    { href:"https://www.formfutura.com/apollox-foaming", label:"Formfutura ApolloX Foaming" },
+    { href:"https://www.formfutura.com/apollox-foaming", label:"Formfutura ApolloX Foaming" }
   ]}
 />
+
 <ResearchCard
   title="Foaming TPU Round-up"
-  topic={["Filaments","3D printed footwear","Printing"]}
+  topic={["Filaments","Footwear","3D-Printing"]}
   date="2025-10-05"
   summary="Soft, variable-density TPU options for liners, midsoles, and dampers."
   links={[
     { href:"https://biqu.equipment/products/biqu-morphlex-variable-hardness-flexible-3d-printer-filament-for-printing-shoes-1-75mm-1kg-spool-compatible-with-most-fdm-printers?variant=41986376925282&country=US&currency=USD&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic", label:"BIQU Morphlex" },
     { href:"https://siraya.tech/products/flex-tpu-air-65a-82a-foaming-flexible-filament", label:"Siraya Flex TPU Air" },
     { href:"https://recreus.com/en-en/products/filaflex-foamy", label:"Recreus Filaflex Foamy" },
-    { href:"https://colorfabb.us/varioshore-tpu-green", label:"colorFabb VarioShore TPU" },
+    { href:"https://colorfabb.us/varioshore-tpu-green", label:"colorFabb VarioShore TPU" }
   ]}
 />
+
 <ResearchCard
   title="Prosthetic Foaming TPU (Silver Additives)"
-  topic={["Filaments","3D printed footwear"]}
+  topic={["Filaments","Footwear"]}
   date="2025-10-05"
   summary="Antimicrobial, foaming TPU—could be applied to liners/footbeds that contact skin."
-  links={[
-    { href:"https://colorfabb.us/varioshore-prosthetic-pale-pink", label:"colorFabb VarioShore Prosthetic" },
-  ]}
+  links={[{ href:"https://colorfabb.us/varioshore-prosthetic-pale-pink", label:"colorFabb VarioShore Prosthetic" }]}
 />
+
 <ResearchCard
   title="PEBA Filament: Talks & Sources"
-  topic={["Filaments","3D printed footwear"]}
+  topic={["Filaments","Footwear"]}
   date="2025-10-05"
   summary="PEBA options for cold-resistant, elastic components; background talk + vendors."
   links={[
     { href:"https://peba.synbotron.com/", label:"Synbotron PEBA" },
     { href:"https://siraya.tech/products/fibreheart-rebound-peba-95a-black-elastic-filament", label:"Siraya Fibreheart PEBA" },
-    { href:"https://fillamentum.com/collections/flexfill-peba-filament/", label:"Fillamentum PEBA" },
+    { href:"https://fillamentum.com/collections/flexfill-peba-filament/", label:"Fillamentum PEBA" }
   ]}
 >
   <Embed slot="media" type="youtube" id="NlcXz0bmvq8" title="PEBA overview talk" />
 </ResearchCard>
+
 <ResearchCard
   title="Altitude Filament (Extreme Cold Resistance)"
   topic={["Filaments","Other"]}
   date="2025-10-05"
   summary="Essentium’s Altitude filament designed for low-temperature performance—relevant to ski environments."
-  links={[
-    { href:"https://www.voxelmatters.com/essentium-launches-altitude-filament-with-extreme-cold-resistance/", label:"Article" }
-  ]}
+  links={[{ href:"https://www.voxelmatters.com/essentium-launches-altitude-filament-with-extreme-cold-resistance/", label:"Article" }]}
 />
+
 <ResearchCard
   title="Flexible TPE Filaments"
-  topic={["Filaments","3D printed footwear"]}
+  topic={["Filaments","Footwear"]}
   date="2025-10-05"
   summary="High-elasticity TPE filament—candidate for gaskets, bellows, and soft straps."
-  links={[
-    { href:"https://us.phrozen3d.com/products/spiderflex-flexible-tpe-3d-printer-filament?variant=50143651496214", label:"Phrozen SpiderFlex TPE" }
-  ]}
+  links={[{ href:"https://us.phrozen3d.com/products/spiderflex-flexible-tpe-3d-printer-filament?variant=50143651496214", label:"Phrozen SpiderFlex TPE" }]}
 />
+
 <ResearchCard
   title="Nylon-Kevlar Composite Filament"
   topic={["Filaments","Structure"]}
   date="2025-10-05"
   summary="Reinforced nylon for stiff, tough parts—think buckles, levers, toe/heel blocks."
-  links={[
-    { href:"https://filamatrix.com/products/pakv-nylon-kevlar-filament", label:"Filamatrix PA-KV Nylon Kevlar" }
-  ]}
+  links={[{ href:"https://filamatrix.com/products/pakv-nylon-kevlar-filament", label:"Filamatrix PA-KV Nylon Kevlar" }]}
 />
-
-{/* ===== Printing / Process & Patterns ===== */}
 
 <ResearchCard
   title="Non-Planar Printing in Modern Slicers"
-  topic={["Printing"]}
+  topic={["3D-Printing"]}
   date="2025-10-05"
   summary="Community workflows for non-planar toolpaths—tiles could better match anatomy while keeping node-mesh joins."
-  links={[
-    { href:"https://www.youtube.com/watch?v=cbhWni9f980&t=12s", label:"YouTube" }
-  ]}
+  links={[{ href:"https://www.youtube.com/watch?v=cbhWni9f980&t=12s", label:"YouTube" }]}
 >
   <Embed slot="media" type="youtube" id="cbhWni9f980" title="Non-planar printing workflows" />
 </ResearchCard>
+
 <ResearchCard
   title="5-DOF Non-Planar Printer"
-  topic={["Printing","Structure"]}
+  topic={["3D-Printing","Structure"]}
   date="2025-10-05"
   summary="5-axis approach to non-planar deposition—opens up overhang-free lattices and shell skins."
-  links={[
-    { href:"https://www.instagram.com/p/DOLlxxYDT2L/", label:"Instagram" }
-  ]}
+  links={[{ href:"https://www.instagram.com/p/DOLlxxYDT2L/", label:"Instagram" }]}
 >
   <Embed slot="media" type="instagram" url="https://www.instagram.com/p/DOLlxxYDT2L/" title="5DOF non-planar printer" />
 </ResearchCard>
+
 <ResearchCard
   title="Morphologically Optimized Joint"
-  topic={["Structure","Printing"]}
+  topic={["Structure","3D-Printing"]}
   date="2025-10-05"
   summary="Joint geometry tuned by morphology—ideas for cuff/hinge regions with smooth stress flow."
-  links={[
-    { href:"https://www.instagram.com/reel/C9CHXFkM10j/", label:"Instagram" }
-  ]}
->
-  <Embed slot="media" type="instagram" url="https://www.instagram.com/reel/C9CHXFkM10j/" title="Optimized joint" />
-</ResearchCard>
+  links={[{ href:"https://www.instagram.com/reel/C9CHXFkM10j/", label:"Instagram" }]}
+/>
+
 <ResearchCard
   title="Polypanels: Modular Triangle System"
-  topic={["Structure","Printing"]}
+  topic={["Structure","3D-Printing"]}
   date="2025-10-05"
   summary="Snap-fit panel system—pattern language for printable tiles and serviceable assemblies."
-  links={[
-    { href:"https://thangs.com/designer/Make%20Anything/3d-model/Polypanels%20%2F%2F%20%22Recursion%22%20Multipass%20Multicolor%20Triangle-1119921", label:"Thangs download" }
-  ]}
+  links={[{ href:"https://thangs.com/designer/Make%20Anything/3d-model/Polypanels%20%2F%2F%20%22Recursion%22%20Multipass%20Multicolor%20Triangle-1119921", label:"Thangs download" }]}
 />
+
 <ResearchCard
   title="Geodesic Cat House (Parametric Panels)"
-  topic={["Structure","Printing"]}
+  topic={["Structure","3D-Printing"]}
   date="2025-10-05"
   summary="Geodesic dome pattern—segmenting shells into printable facets."
-  links={[
-    { href:"https://www.thingiverse.com/thing:4817590", label:"Thingiverse" }
-  ]}
+  links={[{ href:"https://www.thingiverse.com/thing:4817590", label:"Thingiverse" }]}
 />
 
 {/* ===== Modeling / CAD / Math ===== */}
@@ -670,37 +813,36 @@ This is a running and evolving list. I just reformatted everything in this "rese
   summary="Interactive folding patterns—could enable expandable/watertight boot openings."
   links={[{ href:"https://origamisimulator.org/", label:"Origami Simulator" }]}
 />
+
 <ResearchCard
   title="NormalMagic (Blender Normal Tricks)"
-  topic={["Other","Printing"]}
+  topic={["Other","3D-Printing"]}
   date="2025-10-05"
   summary="Surface normal tooling to fake detail and control shading—handy for texture without mesh bloat."
   links={[
     { href:"https://www.instagram.com/reel/DORJhsTjAiF/", label:"Instagram" },
-    { href:"https://spaghetmenot.gumroad.com/l/normalmagic", label:"Gumroad" },
+    { href:"https://spaghetmenot.gumroad.com/l/normalmagic", label:"Gumroad" }
   ]}
 >
   <Embed slot="media" type="instagram" url="https://www.instagram.com/reel/DORJhsTjAiF/" title="NormalMagic" />
 </ResearchCard>
+
 <ResearchCard
   title="Vector Magnitude Explained (Quick Math)"
   topic={["Other"]}
   date="2025-10-05"
   summary="Short refresher on vector magnitude—useful for force/IMU calculations."
-  links={[
-    { href:"https://www.instagram.com/reel/DK2NUa0tc_p/", label:"Instagram" },
-  ]}
+  links={[{ href:"https://www.instagram.com/reel/DK2NUa0tc_p/", label:"Instagram" }]}
 >
   <Embed slot="media" type="instagram" url="https://www.instagram.com/reel/DK2NUa0tc_p/" title="Vector magnitude" />
 </ResearchCard>
+
 <ResearchCard
   title="FEA Intuition (Peter Math)"
   topic={["Other","Structure"]}
   date="2025-10-05"
   summary="Friendly intro to finite-element thinking—good mental model before meshing boot parts."
-  links={[
-    { href:"https://www.instagram.com/reel/DMEDyW9i4JO/", label:"Instagram" },
-  ]}
+  links={[{ href:"https://www.instagram.com/reel/DMEDyW9i4JO/", label:"Instagram" }]}
 >
   <Embed slot="media" type="instagram" url="https://www.instagram.com/reel/DMEDyW9i4JO/" title="FEA intuition" />
 </ResearchCard>
@@ -712,12 +854,9 @@ This is a running and evolving list. I just reformatted everything in this "rese
   topic={["Other"]}
   date="2025-10-05"
   summary="Post + comments with practical UV advice (RizomUV shout-out)."
-  links={[
-    { href:"https://www.instagram.com/reel/DKwNLxkvQcv/", label:"Instagram" }
-  ]}
->
-  <Embed slot="media" type="instagram" url="https://www.instagram.com/reel/DKwNLxkvQcv/" title="AI texture mapping" />
-</ResearchCard>
+  links={[{ href:"https://www.instagram.com/reel/DKwNLxkvQcv/", label:"Instagram" }]}
+/>
+
 <ResearchCard
   title="MIRAGE: Live AI Filters on Video"
   topic={["Other","Motion Tracking"]}
@@ -726,17 +865,16 @@ This is a running and evolving list. I just reformatted everything in this "rese
   links={[
     { href:"https://www.instagram.com/reel/DMVWQVEOyS5/", label:"Instagram" },
     { href:"https://www.miragelsd.net/", label:"Project page" },
-    { href:"https://decart.ai/publications/mirage", label:"Paper" },
+    { href:"https://decart.ai/publications/mirage", label:"Paper" }
   ]}
 />
+
 <ResearchCard
   title="Ghost Text: Prompt Injection in Images"
   topic={["Other"]}
   date="2025-10-05"
   summary="Security angle: adversarial text embedded in images—considerations if we ship vision features."
-  links={[
-    { href:"https://www.instagram.com/reel/DOEOR2fkSoM/", label:"Instagram" }
-  ]}
+  links={[{ href:"https://www.instagram.com/reel/DOEOR2fkSoM/", label:"Instagram" }]}
 >
   <Embed slot="media" type="instagram" url="https://www.instagram.com/reel/DOEOR2fkSoM/" title="Ghost text prompt injection" />
 </ResearchCard>
@@ -748,52 +886,49 @@ This is a running and evolving list. I just reformatted everything in this "rese
   topic={["Structure"]}
   date="2025-10-05"
   summary="Analytical look at the classic braided structure—template for tunable axial stiffness."
-  links={[
-    { href:"https://www.sciencedirect.com/science/article/abs/pii/S2352431624000804", label:"Paper" }
-  ]}
+  links={[{ href:"https://www.sciencedirect.com/science/article/abs/pii/S2352431624000804", label:"Paper" }]}
 />
+
 <ResearchCard
   title="Weaving Objects: 3D-Woven Footwear"
-  topic={["3D printed footwear","Structure"]}
+  topic={["Footwear","Structure"]}
   date="2025-10-05"
   summary="Survey of 3D-woven textiles for shoes—geometry and function; useful for printable weave analogs."
-  links={[
-    { href:"https://www.cs.cornell.edu/~rundongwu/docs/wovenshoe.pdf", label:"PDF" }
-  ]}
+  links={[{ href:"https://www.cs.cornell.edu/~rundongwu/docs/wovenshoe.pdf", label:"PDF" }]}
 />
+
 <ResearchCard
   title="Kagome / Triaxial Weave Modeling"
   topic={["Structure"]}
   date="2025-10-05"
   summary="Principled modeling of interlaced lattices using straight strips—guidance for printable woven lattices."
-  links={[
-    { href:"https://www.researchgate.net/publication/328043391_Beyond_the_basket_case_A_principled_approach_to_the_modelling_of_kagome_weave_patterns_for_the_fabrication_of_interlaced_lattice_structures_using_straight_strips", label:"ResearchGate" }
-  ]}
+  links={[{ href:"https://www.researchgate.net/publication/328043391_Beyond_the_basket_case_A_principled_approach_to_the_modelling_of_kagome_weave_patterns_for_the_fabrication_of_interlaced_lattice_structures_using_straight_strips", label:"ResearchGate" }]}
 />
 
 {/* ===== Gloves / Wearables ===== */}
 
 <ResearchCard
   title="Gel-Printed Sports Glove with Biometric Sensors"
-  topic={["Electronics & Sensing","3D printed footwear"]}
+  topic={["Electronics & Sensing","3D-Printing"]}
   date="2025-10-05"
   summary="Gel printing + integrated sensors—ideas for embedded e-skin in liners/straps."
   links={[
     { href:"https://www.instagram.com/reel/DKX-zQTRdMh/", label:"Instagram" },
-    { href:"https://www.armagloves.com/", label:"Arma Gloves" },
+    { href:"https://www.armagloves.com/", label:"Arma Gloves" }
   ]}
 >
   <Embed slot="media" type="instagram" url="https://www.instagram.com/reel/DKX-zQTRdMh/" title="Gel-printed glove" />
 </ResearchCard>
+
 <ResearchCard
   title="Fashion Drops: Presq × Bambu Lab Printable Shoes"
-  topic={["3D printed footwear","Printing"]}
+  topic={["Footwear","3D-Printing"]}
   date="2025-10-05"
   summary="Consumer-ready, 3D-printable footwear collab—useful reference for materials, print patterns, and assembly workflow."
-  links={[
-    { href:"https://share.google/izfL5wq0zjtTFp9Wf", label:"All3DP (shared link)" }
-  ]}
+  links={[{ href:"https://share.google/izfL5wq0zjtTFp9Wf", label:"All3DP (shared link)" }]}
 />
+
+{/* ===== Rigidity / Metamaterials ===== */}
 
 <ResearchCard
   title="Rigidity via Discrete Rigid Units (arXiv preprint)"
@@ -811,19 +946,15 @@ This is a running and evolving list. I just reformatted everything in this "rese
   topic={["Structure"]}
   date="2025-10-05"
   summary="Paper discusses architectures that dramatically enhance load capacity with programmable stiffness."
-  links={[
-    { href:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12379288/", label:"PMC article" }
-  ]}
+  links={[{ href:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12379288/", label:"PMC article" }]}
 />
 
 <ResearchCard
   title="Nature Communications: Discrete Units for Programmable Rigidity"
-  topic={["Structure","Printing"]}
+  topic={["Structure","3D-Printing"]}
   date="2025-10-05"
   summary="Peer-reviewed study showing how discrete rigid units enable structures that lock into high-rigidity modes."
-  links={[
-    { href:"https://www.nature.com/articles/s41467-025-61809-8", label:"Nature Communications" }
-  ]}
+  links={[{ href:"https://www.nature.com/articles/s41467-025-61809-8", label:"Nature Communications" }]}
 />
 
 <ResearchCard
@@ -831,10 +962,9 @@ This is a running and evolving list. I just reformatted everything in this "rese
   topic={["Structure","Other"]}
   date="2025-10-05"
   summary="Author PDF of the Nature Communications paper (Princeton): good for citation, figures, and methods."
-  links={[
-    { href:"https://www.princeton.edu/~akosmrlj/pdf/2025_Dreier_NatComm.pdf", label:"Author PDF" }
-  ]}
+  links={[{ href:"https://www.princeton.edu/~akosmrlj/pdf/2025_Dreier_NatComm.pdf", label:"Author PDF" }]}
 />
+
 <ResearchCard
   title="Facebook Group: Tiling"
   topic={["Structure","Other"]}
@@ -842,5 +972,6 @@ This is a running and evolving list. I just reformatted everything in this "rese
   summary="Active community on geometric tilings, tessellations, and related constructions—great reference well for printable mesh patterns and panel joints."
   links={[{ href: "https://www.facebook.com/groups/tiling", label: "Facebook Group" }]}
 />
+
 
 </div>

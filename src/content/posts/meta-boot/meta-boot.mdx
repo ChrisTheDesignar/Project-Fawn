@@ -1,10 +1,89 @@
 ---
 title: "DRAWING A SKI BOOT"
 description: "I will be posting my latest sketch and collection of surrounding assets here"
-pubDate: 2025-10-01
+pubDate: 2025-10-07
 draft: false
 cover: ./meta-boot.jpg
-coverAlt: "green placeholder title cardboardtemplates"
+coverAlt: "green foot sketch process"
 ---
 import { Image } from 'astro:assets';
+import Embed from "@/components/Embed.astro";
 
+import GlueWeld from './glue-weld.jpg';
+import threeDdovetail from './3d-dovetail.jpg';
+import beigebootprocess from './beigebootprocess.jpg';
+import beigehero from './beigehero.jpg';
+
+
+## TL;DR
+Concept art for tunable stiffness meta-tile custom 3D printed ski boots with phantom-foot sensing, knee-saving releasable heel lug 
+
+The last time i tried drawing boots like this, closure systems always seem to be the big question. I had the thought of the paneled construction and I 3D printed a few sample tiles, but it was clear that just plastic welding, glueing, or similar approaches would not be feasible. 
+
+<a href={GlueWeld.src} target="_blank" rel="noopener noreferrer">
+  <Image
+    src={GlueWeld}
+    alt="previous explorations with joining printed tiles via 3d pen welding and epoxy bonding"
+    sizes="(min-width: 980px) 980px, 100vw"
+    style="width:100%; height:auto;"
+  />
+</a>
+
+For a long time, I imagined that the tiles could utilize complex printed 3d dovetail features to mechanically join the tiles to each other. I figure with some work it would be feasible to create a proccess to automatically create these dovetails based on the assembly/pull direction they would need assembled in. That seemed feasible, but it didn't account for any way to keep them joined together, and even worse, there was no clear path to making that idea something you could easily put on, take off, and latch together. 
+
+<a href={threeDdovetail.src} target="_blank" rel="noopener noreferrer">
+  <Image
+    src={threeDdovetail}
+    alt="example model showing 1 edge of a tile with a interlocking 3D shaped dovetail"
+    sizes="(min-width: 980px) 980px, 100vw"
+    style="width:100%; height:auto;"
+  />
+</a>
+
+My good friend makes and repairs traditional african drums, and upon seeing the way the tension lines were all interwoven it got me thinking seriously about lacing a boot up in a similar fashion. Looking at my angular low poly boot concepts, it seemed feasible to string together the tiles. This seemed complex, but like something that had some feasibility to it. 
+
+One decision I had been thinking over, is once the ski boot shell geometry is obtained and you have that low poly exterior, you could build each tile off each flat face, OR you could potentially create a more complex "node" tile that further broke down that low poly shape with intermeshing geometries so that the load bearing edges of the mesh were individual tiles and not seams? It seemed like something that could be flipped to change the way the tiles build. 
+
+image of simple tile vs node tile
+
+This introduced the idea of the mesh vs tile prints having an offset element to them; they don't HAVE to line up with each other. I then started thinking about tensioning and I thought of a chinese finger trap toy and the mechanism that it uses to tighten; Inter woven biaxial tube braiding. This is the same concept used to make the colorful jackets of paracord rope. So then I thought, if this tube braid could be appropriately deformed around the heel and forefoot, that would be a path to close this boot. Upon thinking about it more, this started to look very intriguing. The boot could potentially be loosely held together like a chainmail and could be simply slipped on, then tensioned (via some means) so that the tiles were pulled together. I found that this is an emerging field of technology referred to as meta bead structures, and indeed, they can create stiffness-tunable structures that can carry extreme loads when they enter a "superjammed" state. Now that just SOUNDS cool, and there was research to support digging into this path, so I started going forward with it. 
+
+I started sketching on my iPad, first taking an old ski sock foot sketch I had with a good angle, and had chatgpt kick me out a photorealistic ski sock wearing foot to draw over. I then sketched out construction planes to bend the braid path around the heel and forefoot, and approximated the circumference of the boot at those points. I split those into 8 segments, and connected the vertexes with the next adjacent one on the following layer. This laid out my spiraling cord network. I then saw clearly that with this type of cord path my tiles would be likely based on 4 inputs of the cord paths, not the three sides of the triangle. I assigned the crossover point as the center of each tile, and ended up with an 8 sided tile (avoids sharp corners) that rides on two roughly perpendicular tension cords. Inter spaced with those would exist the secondary TPU/TPE printed liner parts. These offset, flexible parts could act to help seal and or hold the boot tiles together via clever featuring and account for expansion/contraction and frictional wear and noise. 
+
+
+<a href={beigebootprocess.src} target="_blank" rel="noopener noreferrer">
+  <Image
+    src={beigebootprocess}
+    alt="example model showing 1 edge of a tile with a interlocking 3D shaped dovetail"
+    sizes="(min-width: 980px) 980px, 100vw"
+    style="width:100%; height:auto;"
+  />
+</a>
+
+
+The next element I wanted to at least visualize here was the concept of the break away heel lug. Since my insight that the binding should not need to be reinvented since it can't distinguish between normal ski forces and phantom-foot forces, I figured the boot should contain a release modality of it's own. For one, the boot is a much more feasible device to detect and distinguish between safe and compromised body positions, but also I don't want to try to replace all the bindings that are out there; thats not feasible or ecological. By building the release into the boot, it means any ski that user decides to ski or demo can be skied confidently knowing the release mechanism has been baked into the boots. 
+
+So how would that all work? Well I don't know yet, but showing something is how we get the idea rolling. My initial thoughts are that these tension paths could be further refined to align more precisely with a user's anatomy so that when one is leaning back and to the side, certain cord paths could load in such a way that they could "slip" into an state that would allow the heel ejection to be able to occur. Only Once that mechanical (or electronic) logic gate was opened, could the heel release. It might simply break away or require a spring loaded element like a ski binging has, but the main point is the boot is determining the compromised biomechanics and only allowing the release to happen in those states. This should prevent this function from limiting skiing performance. 
+
+As I was building out the sketch, I could see it was possible to loop opposite strand paths over at the toe so that the effective number of tension cords could be halved. This still left a bunch of literal loose ends to deal with, but I kept sketching the boot anyway. I figured tension the whole thing easily was a different problem to solve. 
+
+I explored a few different ideas for closing the boot via tensioning the laces. On the most low end, they could be tied off with knots. this would function for a prototype but not for a product. Maybe a gathered bundle of tension cords making up a neux powerstrap? Maybe they are electronically activated spool tensioners? Sure. Lets roll with that for this concept just 'cause. We'll figure it out for real as we go! 
+
+<a href={beigehero.src} target="_blank" rel="noopener noreferrer">
+  <Image
+    src={beigehero}
+    alt="project fawn concept ski boot by CTD with modular braided tiles"
+    sizes="(min-width: 980px) 980px, 100vw"
+    style="width:100%; height:auto;"
+  />
+</a>
+
+At this point I wanted to keep finessing the drawing, but decided it got the points I wanted to convey across. I started feeding the sketch into Chatgpt and Gemini with similarly disappointing results at improving the realism. they kept turning them into hiking boots. What did almost work was a process where I made an image of a skier putting the boot on, and then overlaid it with the sketch and fed it into wan2.5 and Veo3. The Wan 2.5 result was generated on Artlist.io as trial and while the boot still turns into a hiking boot, it does an impressive job of visualizing the lacing changing the boots stiffness for putting it on. The Google result had convincing 3D printed textures but the forms deviated back to more of a traditional pivoting ski boot design. The added voiceover was a bit silly, and of course the boot breaks down into slop when it is tensioned. 
+
+
+
+
+<div class="grid gap-4 md:grid-cols-2 items-start">
+  <Embed type="youtube" id="EuLYiSWgcS0" title="AI animated ski boot concept" />
+  <Embed type="youtube" id="y5k3ZdtxX7c" title="Ski boot concept sketch animation" />
+</div>
